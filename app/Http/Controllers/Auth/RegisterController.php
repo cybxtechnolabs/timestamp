@@ -78,13 +78,13 @@ class RegisterController extends Controller
      * @param  mixed  $user
      * @return mixed
      */
-    protected function registered(Request $request, $user)
-    {
-        $this->guard()->logout();
+    // protected function registered(Request $request, $user)
+    // {
+    //     $this->guard()->logout();
 
-        return redirect()->route('login')
-                        ->withSuccess('You are successfully registered. Wait for admin to approve your registration!');
+    //     return redirect()->route('login')
+    //                     ->withSuccess('You are successfully registered. Wait for admin to approve your registration!');
                         
-    }
+    // }
 
 }

@@ -24,7 +24,7 @@ class BulkImport implements ToModel
                 'snap_photo'        => 'image', //$row[0],
                 'name'    => $row[1],
                 'staff'    => $row[2],
-                'body_temperature'    => $row[3],
+                'body_temperature'    => str_replace("℉","", $row[3]),
                 'pass_status'    => $row[4],
                 'device_name'    => $row[5],
                 'access_direction'    => $row[6],

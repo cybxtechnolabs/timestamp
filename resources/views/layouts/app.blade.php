@@ -148,10 +148,9 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<!-- <script src="{{ asset('js/jquery.min.js') }}"></script> -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<!-- jQuery UI 1.11.4 -->
-<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
 <!-- datatables jquery -->
@@ -183,7 +182,7 @@ $.widget.bridge('uibutton', $.ui.button)
     // } );
 
 </script>
-
+@stack('after-script')
 <script src="{{ asset('js/jquery.overlayScrollbars.min.js') }}"></script>
 <script src="{{ asset('js/adminlte.js') }}"></script>
 </body>

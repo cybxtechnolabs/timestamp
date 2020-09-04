@@ -12,7 +12,7 @@
                 </li>
             @endif
         @else
-             @if($Admin) 
+        @if(Auth::user()->user_type == 'admin')
             <li class="nav-item">
                 <a href="{{ route('admin.users') }}" class="nav-link">
                     <i class="nav-icon fas fa-circle"></i>

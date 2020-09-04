@@ -45,7 +45,7 @@ Route::get('/import', 'ImportController@index')->name('import');
 Route::post('/import', 'ImportController@uploadexcel')->name('upload');
 
 Route::get('/report', 'ReportController@index')->name('report.index');
-Route::get('/report/generate', 'ReportController@generateReport')->name('report.generate');
+Route::post('/report/generate', 'ReportController@generateReport')->name('report.generate');
 
 
 
