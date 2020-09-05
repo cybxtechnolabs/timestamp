@@ -28,6 +28,7 @@ Route::get('artisan', function(Request $request) {
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
     Route::get('users', ['middleware' => 'adminAccess', 'as' => 'admin.users', 'uses' => 'UserController@index']);
     Route::get('setting', ['middleware' => 'adminAccess', 'as' => 'admin.setting', 'uses' => 'SettingController@edit']);
+    Route::get('users/approve/{user_id?}', ['middleware' => 'adminAccess', 'as' => 'admin.usersapprove', 'uses' => 'UserController@approve']);
     //Route::get('setting/update/{id?}', ['middleware' => 'adminAccess', 'as' => 'admin.settingupdate', 'uses' => 'SettingController@update']);
    // Route::post('settings/update/{id}', ['middleware' => 'adminAccess', 'as' => 'admin.settings', 'uses' => 'SettingController@index'] 'GalleryController@update')->name('gallery.update');
 });

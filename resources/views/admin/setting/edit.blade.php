@@ -70,8 +70,12 @@
             </label>
         </div>
         <div class="form-group">
-            <label for="threshold_temperature">Threshold Temperature</label>
+            <label for="threshold_temperature">Threshold Temperature (℉)</label>
             <input type="text" class="form-control" id="threshold_temperature"  name="threshold_temperature" value="{{$Setting->threshold_temperature}}">
+        </div>
+        <div class="form-group">
+            <label for="threshold_temperature">Max Hours Per Day</label>
+            <input type="text" class="form-control" id="max_hours_per_day"  name="max_hours_per_day" value="{{$Setting->max_hours_per_day}}">
         </div>
         
         

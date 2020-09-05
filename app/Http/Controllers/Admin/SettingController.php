@@ -39,9 +39,10 @@ class SettingController extends Controller
     {  
         //validation
         $request->validate([  
-            'multiple_record_time'=>'required',
+            'multiple_record_time'=>'required|numeric',
             //'skip_mask'=>'required',
-            'threshold_temperature'=>'required',
+            'threshold_temperature'=>'required|numeric',
+            'max_hours_per_day'=>'required|numeric',
         ]);
         $skip_mask = $request->skip_mask == 1 ? 1: 0;
         
@@ -50,6 +51,7 @@ class SettingController extends Controller
         $Setting->multiple_record_time = $request->multiple_record_time;
         $Setting->skip_mask = $skip_mask;
         $Setting->threshold_temperature = $request->threshold_temperature;
+        $Setting->max_hours_per_day = $request->max_hours_per_day;
         $Setting->save();
 
         //redirect to galleries list

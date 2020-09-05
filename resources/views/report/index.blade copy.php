@@ -62,90 +62,130 @@
                     </div>
                 </form>    
               </div>
+  @if($data)
 
-              @if(count($data) > 0)
-              
-                <!-- <div class="container-fluid">
-                  <div class="row">
-                    <div class="col-12">
-                      <div class="card">
-                      @foreach($data as $u => $userData)
-                      <div class="user">
-                        {{$u}}
-                        
-                        @foreach ($userData  as  $d => $dates)
-                        <div class="hrs">
-                          {{$d}}
-                        </div>
-                        @endforeach
-                      </div><hr>
-                    @endforeach
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
-                <div class="container">
-                    <!--Row with two equal columns-->
-                    <!-- <div class="row">
-                        <div class="col-md-2">Username</div>
-                        <div class="col-md-2">Date</div>
-                        <div class="col-md-2">Day Total hrs</div>
-                        <div class="col-md-2">Overall</div>
-                        <div class="col-md-2">Total Hrs</div>
-                    </div> -->
-                    @foreach($data as $u => $userData)
-                      <div class="">
-                          <div class=""><strong>{{$u}}:</strong>
-                          <table class="table">
-                    <thead class="thead-dark" id="myTable">
-                      <tr>
-                        
-                        <th scope="col">Date</th>
-                        <th scope="col">Check In</th>
-                        <th scope="col">Check Out</th>
-                        <th scope="col">Duration</th>
-                        <!-- <th scope="col">Day Hrs</th> -->
-                      </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($userData  as  $d => $dates)
-                        
-                            @if($d !== 'totalhrs')
-                              @foreach ($dates  as  $key => $inout)
-                              <tr>
-                                  @if($key !== 'dayhrs')
-                                  <td>{{$d}}</td>
-                                    @foreach ($inout  as  $i => $check)
-                                      @if($i == 'in')
-                                      <td>{{$check}}</td>
-                                      @else
-                                      <td>{{$check}}</td>
-                                      @endif
-                                    @endforeach
-                                  @endif
-                                </tr>
-                                @endforeach
-                              
-                            @else
-                            @endif
-                          
-                          @endforeach
-                    </tbody>
-                    <tfoot>
-                      <tr >
-                      <td colspan=4>Total Hrs: {{$userData[$d]}}</td>
-                      </tr>
-                    </tfoot>
-                    </table>
-                          
-                          </div>
-                      </div>
-                    @endforeach
-                </div>
 
-                @else
-                <div class="alert alert-danger jsutify-center ">No Data Found</div>
-                @endif
+              <table class="table">
+  <thead class="thead-dark" id="myTable">
+    <tr>
+      <!-- <th scope="col">#</th> -->
+      <th scope="col">Date</th>
+      <th scope="col">Name</th>
+      <th scope="col">Check In</th>
+      <th scope="col">Check Out</th>
+      <!-- <th scope="col">Staff/Visitor</th>
+      <th scope="col">Body temperature</th>
+      <th scope="col">Pass status</th>
+      <th scope="col">Device name</th>
+      <th scope="col">Access direction</th>
+      <th scope="col">ETC details</th> -->
+      <th scope="col">Duration</th>
+      <th scope="col">Day Hrs</th>
+    </tr>
+  </thead>
+  <tbody>
+  @if(count($data) > 0)
+  <?php
+
+    $MaxHrs = date('h:i:s', strtotime($maxhrs.':00:00'));// "12:00:00"; strtotime($maxhrs.':00:00')
+//print_r($MaxHrs);
+
+  ?>
+    @foreach($data as $d => $datewiseData)
+
+      @foreach ($datewiseData  as  $k => $userwiseData)
+        @foreach (array_chunk($userwiseData, 2)  as  $timeKey => $timewise)
+        <pre><?php 
+         // print_r($timeKey)
+         //get this users first entry of the day
+         $firstEntryOftheDay = $userwiseData[0];
+
+          if(!isset($timewise[1])) {
+            
+            //first entry of the day
+            $firstEntryOftheDayTime = date('h:i:s', strtotime($firstEntryOftheDay));
+
+            //this duration first record
+            $thiszeroTime = $timewise[0];
+            
+            //max hrs //$MaxHrs
+            $secsDuration = strtotime($MaxHrs)-strtotime("00:00:00");
+            $DefaultLastTime = date("H:i:s",strtotime($thiszeroTime)+$secsDuration);
+            $timewise[1] =  $DefaultLastTime;
+
+            $userwiseData[] = $DefaultLastTime;
+            
+            
+          }
+
+
+          $durationExtract = (strtotime(date("H:i:s", strtotime($timewise[1])))-strtotime(date("H:i:s", strtotime($timewise[0]))))/60;
+         // var_dump($durationExtract);
+          $hours = floor($durationExtract / 60);
+          $minutes = ($durationExtract % 60);
+
+          $duration = date("H:i:s", strtotime($hours.':'.$minutes.':00')) ;// number_format((float)$durationExtract, 2, '.', '');
+          
+          //calculate total hrs of the day
+          //get the first entry of the day 
+          $firstEntryOftheDayTime = date('h:i:s', strtotime($firstEntryOftheDay));
+
+          //get the last entry of the day
+          ///$firstEntryOftheDayTime = date('h:i:s', strtotime($firstEntryOftheDay));
+          //$lastdataIn_userwiseData = end($userwiseData);
+          $lastdataIn_userwiseData = date('h:i:s', strtotime(end($userwiseData)));
+          //echo $lastdataIn_userwiseData;
+          if($lastdataIn_userwiseData == $firstEntryOftheDayTime) {
+            //this is having only single time
+            $totalHrsOfDay = $duration;
+          // } else if($lastdataIn_userwiseData == ) { //if last entry is odd
+
+          } else {
+            //calculate the total hrs of the day
+            $DaydurationExtract = (strtotime($lastdataIn_userwiseData) - strtotime($firstEntryOftheDayTime))/60;
+          // var_dump($durationExtract);
+            $Dayhours = floor($DaydurationExtract / 60);
+            $Dayminutes = ($DaydurationExtract % 60);
+
+            $totalHrsOfDay = date("H:i:s", strtotime($Dayhours.':'.$Dayminutes.':00')) ;
+
+            //$totalHrsOfDay = '';
+          }
+          //add the time 
+          
+          
+          ?></pre>
+
+        <tr>
+          <!-- <th scope="row">1</th> -->
+          <td>{{$d}}</td>
+          <td>{{$k}}</td>
+          <td>{{$timewise[0]}}</td>
+          <td>{{$timewise[1]}}</td>
+          <!-- <td>@mdo</td>
+          <td>Pass status</td>
+          <td>Device name</td>
+          <td>Access direction</td>
+          <td>Creation date</td>
+          <td>ETC details</td> -->
+          <td>{{$duration}} Hrs</td>
+          <td>{{$lastdataIn_userwiseData}}</td>
+          <td></td>
+        </tr>
+
+
+         @endforeach
+      @endforeach
+      
+    @endforeach
+  @endif   
+
+
+  
+  </tbody>
+</table>
+@endif
+
             </div>
           </div>
         </div>

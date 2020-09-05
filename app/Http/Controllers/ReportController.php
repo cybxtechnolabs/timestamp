@@ -25,10 +25,16 @@ class ReportController extends Controller
         $user_id = Auth::user()->id;
         //get current settings
         $Setting = Setting::find(1);
+        $data = [];
+        return view('report.index')->with('user_id', $user_id)->with('setting', $Setting)->with('data', $data);
+    }
+    
+    public function getReportData() {
 
-        return view('report.index')->with('user_id', $user_id)->with('setting', $Setting)->with('data', '');
     }
 
+   
+    
     public function generateReport(Request $request) {
 
         //validate
@@ -36,6 +42,9 @@ class ReportController extends Controller
             'start_date'=>'required',
             'end_date'=>'required',
         ]);
+        
+
+        
 
 
         //get current user id
@@ -50,11 +59,14 @@ class ReportController extends Controller
         //get settings available
         $Setting = Setting::find(1);
 
+        //TODO - check daywise filter, weekly filter or monthly filter
+       // $data  = getReportData();
 
         //get all records filter with settings(skip mask/temperature imported by current user)
         $reports = Bulk::where('imported_by', $user_id)
                         ->where([['creation_date','>=', $start], ['creation_date','<=', $end]])
                         ->where([['body_temperature','<=', (int)$Setting->threshold_temperature]])
+                        ->where([['name','!=', 'Stranger']])
                         ->orderBy('creation_date', 'desc')
                         ->orderBy('name', 'asc')
                         ->orderBy('creation_time');
@@ -75,44 +87,11 @@ class ReportController extends Controller
         if (count($reportsData) > 0) {
             foreach ($reportsData as $report) {
                 //$r_data[$report->creation_date] = 
-                $r_data[$report->creation_date][$report->name] = [];// $report->name;
-                // $r_data[$report->creation_date][$report->name]['staff'] = $report->staff;
-                // $r_data[$report->creation_date][$report->name]['body_temperature'] = $report->body_temperature;
-                // $r_data[$report->creation_date][$report->name]['pass_status'] = $report->pass_status;
-                // $r_data[$report->creation_date][$report->name]['device_name'] = $report->device_name;
-                // $r_data[$report->creation_date][$report->name]['access_direction'] = $report->access_direction;
-                // $r_data[$report->creation_date][$report->name]['creation_date'] = $report->creation_date;
-                // $r_data[$report->creation_date][$report->name]['creation_time'] = $report->creation_time;
-                // $r_data[$report->creation_date][$report->name]['id_card'] = $report->id_card;
-                // $r_data[$report->creation_date][$report->name]['ic_card'] = $report->ic_card;
-                // $r_data[$report->creation_date][$report->name]['personner_id'] = $report->personner_id;
+                $r_data[$report->name][$report->creation_date] = [];
 
-              //  if(array_key_exists($report->name, $r_data[$report->creation_date])) {
-                //    $r_data[$report->creation_date][$report->name][] = $report->creation_time;
-                 //   echo '<pre>'; print_r($r_data[$report->creation_date][$report->name]); echo '</pre>';
-               // }
-               if($r_data[$report->creation_date][$report->name] != '') {
-                   // if() {
-                    // if(!isset($r_data[$report->creation_date][$report->name]['prev'])) {
-                    //     $r_data[$report->creation_date][$report->name]['prev'][] =  $report->creation_time;
-                    // }
-                    
-                    // if(!isset($r_data[$report->creation_date][$report->name]['prev'])) {
-                    //     $thisuser_creation[$report->name]['prev'] = $report->creation_time;
-                    //     $r_data[$report->creation_date][$report->name] = $thisuser_creation[$report->name];
-                    //     //echo '<pre>'; print_r($r_data[$report->creation_date][$report->name]); echo '</pre>';
-                    //    // $thisuser_creation[$report->name][] = 
-                    // } 
-                     //   $thisuser_creation[$report->name][] = $report->creation_date. ' ' .$report->creation_time;
+               if($r_data[$report->name][$report->creation_date] != '') {
                     $thisuser_creation[$report->name][] = $report->creation_time;
-                   // $thisuser_creation[$report->name][]
-
-                    $r_data[$report->creation_date][$report->name] = $thisuser_creation[$report->name];
-                        
-
-                       // $thisuser_creation[$report->name][] = $report->creation_time;
-                   // }
-                    
+                    $r_data[$report->name][$report->creation_date] = $thisuser_creation[$report->name];
                }
 
             }
@@ -122,11 +101,7 @@ class ReportController extends Controller
         //dd($r_data);
         $cr = [];
         foreach ($r_data as $d => $datewiseData) {
-           // echo '<pre>'; print_r($d); dd();
             foreach ($datewiseData as  $k => $userwiseData) {
-              // echo '<pre>'; print_r($k); dd();
-
-                
                 $x = null;
                 $sum = strtotime('00:00:00');
                 $sum2 = 0;
@@ -147,6 +122,8 @@ class ReportController extends Controller
                         if($interval->i <= (int)$Setting->multiple_record_time && $interval->h == 0){
                         //    echo $interval->i." minutes -$key";
                             unset($userwiseData[$key]);
+                            //$userwiseData2 = array_values($userwiseData);
+                            //array_splice($userwiseData,1,0);
                         //    echo "<br />";
                         }
                         
@@ -164,22 +141,72 @@ class ReportController extends Controller
                // echo date("H:i:s",$sum3);
                // echo '</pre>'; dd();
                $datewiseData[$k] =  $userwiseData;
-               $datewiseData[$k]['total'] = date("H:i:s",$sum3);
+             //  $datewiseData[$k]['total'] = date("H:i:s",$sum3);
             }
             $r_data[$d] = $datewiseData;
             //echo '<pre>'; print_r($datewiseData); 
         }
 
-       // dd($r_data);
+      //  dd($r_data);
 
        // dd('working..');
+        //get max hrs per day
+        $maxhrs = $Setting->max_hours_per_day;
+        $MaxHrs = date('h:i:s', strtotime($maxhrs.':00:00'));// "12:00:00"; strtotime($maxhrs.':00:00')
 
-        return view('report.index')->with('data', $r_data);
-      //  dd($r_data);
-        //set in and out time from data(max time to skip)
-        //build proper array structure to display in table
-        //return value
+        $reportData = [];
+        foreach ($r_data as $d => $datewiseData) {
+            $totalhrs = strtotime('00:00:00');
+            $durationExtracttotalhrs = 0;
+            foreach ($datewiseData  as  $u => $userwiseData)  {
+                $userwiseData = array_values($userwiseData); //restruct the usertime
+                $firstEntryOftheDay = $userwiseData[0]; //6:28:56 
+                $firstEntryOftheDayTime = date('h:i:s', strtotime($firstEntryOftheDay)); //06:28:56 type: date
+               // echo '<hr><pre>u='; print_r($d); echo '</pre>';
+               // echo '<pre>d='; print_r($u); echo '</pre>';
+                $dayhrs = strtotime('00:00:00');
+                foreach (array_chunk($userwiseData, 2)  as  $timeKey => $timeValue) {
+                    $checkinCurrent = $timeValue[0]; //checkin
 
-        
+                 //   echo '<pre>timeValue='; print_r($timeValue); echo '</pre>';
+
+                    if(!isset($timeValue[1])) { //means missed checkout of the day
+                        //adding default max hrs to checkin time of the day
+                        $secsDuration = strtotime($MaxHrs)-strtotime("00:00:00");
+                        $DefaultLastTime = date("H:i:s",strtotime($firstEntryOftheDay)+$secsDuration); //default checkout time of the day
+                        $checkOutCurrent = $DefaultLastTime; //checkout time to display
+
+                      //  echo '<pre>checkOutCurrent='; print_r($checkOutCurrent); echo '</pre>';
+
+                    } else {
+                        $checkOutCurrent = $timeValue[1]; //checkout
+                    }
+                    //get duration between checkin and checkout
+                    $durationExtract = (strtotime(date("H:i:s", strtotime($checkOutCurrent))) - strtotime(date("H:i:s", strtotime($checkinCurrent))))/60;
+                    $Dayhours = floor($durationExtract / 60);
+                    $Dayminutes = ($durationExtract % 60);
+                    $duration = date("H:i:s", strtotime($Dayhours.':'.$Dayminutes.':00')) ;
+
+                    $durationExtracttotalhrs += $durationExtract;
+
+                    $reportData[$d][$u][] = [
+                            'in'=>$checkinCurrent, 'out'=>$checkOutCurrent, 'duration'=>$duration
+                    ];
+                    $dayhrs = strtotime($duration) + $dayhrs;
+                }
+
+                $reportData[$d][$u]['dayhrs'] = date("H:i:s", $dayhrs);
+
+                $totalhrs = $durationExtracttotalhrs; //$dayhrs + $totalhrs;
+            }
+            $Dayhourstotalhrs = floor($durationExtracttotalhrs / 60);
+            $Dayminutestotalhrs = (string)$durationExtracttotalhrs % 60;
+
+           // $Dayminutestotalhrs =  number_format((float)$Dayminutestotalhrs, 2, '.', '');
+            $totalhrs = sprintf("%02d", $Dayhourstotalhrs).':'.sprintf("%02d", $Dayminutestotalhrs);
+            $reportData[$d]['totalhrs'] = $totalhrs;
+        }
+
+        return view('report.index')->with('data', $reportData)->with('MaxHrs', $MaxHrs); 
     }
 }

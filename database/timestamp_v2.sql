@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2020 at 04:04 PM
+-- Generation Time: Sep 05, 2020 at 04:16 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -116,75 +116,75 @@ CREATE TABLE `import` (
 --
 
 INSERT INTO `import` (`id`, `imported_by`, `snap_photo`, `name`, `staff`, `body_temperature`, `pass_status`, `device_name`, `access_direction`, `creation_date`, `creation_time`, `id_card`, `ic_card`, `personner_id`, `updated_at`, `created_at`) VALUES
-(1053, 2, 'image', 'Dwight', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:30:55', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1054, 2, 'image', 'Andy', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:30:48', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1055, 2, 'image', 'Jim', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:30:23', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1056, 2, 'image', 'Jim', 'Employee', '97.7', 'No mask', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:30:06', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1057, 2, 'image', 'Dwight', 'Employee', '97.7', 'No mask', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:29:54', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1058, 2, 'image', 'Andy', 'Employee', '97.7', 'No mask', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:29:45', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1059, 2, 'image', 'Jim', 'Employee', '97.9', 'No mask', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:29:33', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1060, 2, 'image', 'Jim', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:29:18', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1061, 2, 'image', 'Dwight', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:29:06', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1062, 2, 'image', 'Andy', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:28:56', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1063, 2, 'image', 'Chris Sabina', 'Employee', '97.5', 'No mask', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:22:10', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1064, 2, 'image', 'Chris Sabina', 'Employee', '98.1', 'No mask', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:22:02', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1065, 2, 'image', 'Chris Sabina', 'Employee', 'None', 'Normal', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:21:56', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1066, 2, 'image', 'Vincent Sabina Jr', 'Employee', '98.1', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:43:33', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1067, 2, 'image', 'Vincent Sabina Jr', 'Employee', '98.1', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:43:16', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1068, 2, 'image', 'Vincent Sabina Jr', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:35:47', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1069, 2, 'image', 'Vincent Sabina Jr', 'Employee', '97.9', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:35:35', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1070, 2, 'image', 'Vincent Sabina Jr', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:35:07', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1071, 2, 'image', 'Vincent Sabina Jr', 'Employee', '97.7', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:34:54', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1072, 2, 'image', 'Vincent Sabina Jr', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:33:17', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1073, 2, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:26:41', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1074, 2, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:26:15', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1075, 2, 'image', 'Chris Sabina', 'Employee', '98.1', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:26:06', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1076, 2, 'image', 'Vincent Sabina Jr', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:25:36', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1077, 2, 'image', 'Vincent Sabina Jr', 'Employee', '97.9', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:25:23', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1078, 2, 'image', 'Vincent Sabina Jr', 'Employee', '97.9', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:25:21', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1079, 2, 'image', 'Vincent Sabina Jr', 'Employee', '97.9', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:25:14', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1080, 2, 'image', 'Vincent Sabina Jr', 'Employee', '97.9', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:24:19', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1081, 2, 'image', 'Vincent Sabina Jr', 'Employee', '97.5', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:24:04', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1082, 2, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:00:47', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1083, 2, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:00:35', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1084, 2, 'image', 'Stranger', 'Stranger', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '16:04:30', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1085, 2, 'image', 'Stranger', 'Stranger', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '16:04:15', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1086, 2, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '15:33:08', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1087, 2, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '15:30:52', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1088, 2, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '15:29:01', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1089, 2, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '15:28:14', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1090, 2, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '15:21:42', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1091, 2, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:59:51', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1092, 2, 'image', 'Chris Sabina', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:59:11', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1093, 2, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:36:52', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1094, 2, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:35:31', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1095, 2, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:31:47', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1096, 2, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:29:58', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1097, 2, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:28:26', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1098, 2, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:25:23', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1099, 2, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:24:40', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1100, 2, 'image', 'Chris Sabina', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:59:49', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1101, 2, 'image', 'Chris Sabina', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:59:40', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1102, 2, 'image', 'Chris Sabina', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:39:39', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1103, 2, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:18:46', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1104, 2, 'image', 'Chris Sabina', 'Employee', '97.0', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:18:37', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1105, 2, 'image', 'Chris Sabina', 'Employee', 'None', 'Normal', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:18:29', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1106, 2, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:01:56', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1107, 2, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:00:35', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1108, 2, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:00:26', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1109, 2, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:00:18', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1110, 2, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:00:01', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1111, 2, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:59:56', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1112, 2, 'image', 'Chris Sabina', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:59:51', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1113, 2, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:59:39', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1114, 2, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:49:40', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1115, 2, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:44:58', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1116, 2, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:44:50', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1117, 2, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:40:12', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1118, 2, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:38:25', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1119, 2, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:38:12', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1120, 2, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:34:38', NULL, NULL, NULL, '2020-09-04', '2020-09-04'),
-(1121, 2, 'image', 'Chris Sabina', 'Employee', '97.7', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:31:38', NULL, NULL, NULL, '2020-09-04', '2020-09-04');
+(1123, 31, 'image', 'Dwight', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:30:55', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1124, 31, 'image', 'Andy', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:30:48', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1125, 31, 'image', 'Jim', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:30:23', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1126, 31, 'image', 'Jim', 'Employee', '97.7', 'No mask', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:30:06', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1127, 31, 'image', 'Dwight', 'Employee', '97.7', 'No mask', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:29:54', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1128, 31, 'image', 'Andy', 'Employee', '97.7', 'No mask', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:29:45', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1129, 31, 'image', 'Jim', 'Employee', '97.9', 'No mask', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:29:33', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1130, 31, 'image', 'Jim', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:29:18', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1131, 31, 'image', 'Dwight', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:29:06', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1132, 31, 'image', 'Andy', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:28:56', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1133, 31, 'image', 'Chris Sabina', 'Employee', '97.5', 'No mask', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:22:10', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1134, 31, 'image', 'Chris Sabina', 'Employee', '98.1', 'No mask', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:22:02', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1135, 31, 'image', 'Chris Sabina', 'Employee', 'None', 'Normal', 'XF-TM-100', 'Face swiping', '2020-09-01', '6:21:56', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1136, 31, 'image', 'Vincent Sabina Jr', 'Employee', '98.1', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:43:33', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1137, 31, 'image', 'Vincent Sabina Jr', 'Employee', '98.1', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:43:16', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1138, 31, 'image', 'Vincent Sabina Jr', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:35:47', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1139, 31, 'image', 'Vincent Sabina Jr', 'Employee', '97.9', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:35:35', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1140, 31, 'image', 'Vincent Sabina Jr', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:35:07', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1141, 31, 'image', 'Vincent Sabina Jr', 'Employee', '97.7', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:34:54', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1142, 31, 'image', 'Vincent Sabina Jr', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:33:17', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1143, 31, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:26:41', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1144, 31, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:26:15', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1145, 31, 'image', 'Chris Sabina', 'Employee', '98.1', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:26:06', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1146, 31, 'image', 'Vincent Sabina Jr', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:25:36', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1147, 31, 'image', 'Vincent Sabina Jr', 'Employee', '97.9', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:25:23', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1148, 31, 'image', 'Vincent Sabina Jr', 'Employee', '97.9', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:25:21', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1149, 31, 'image', 'Vincent Sabina Jr', 'Employee', '97.9', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:25:14', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1150, 31, 'image', 'Vincent Sabina Jr', 'Employee', '97.9', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:24:19', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1151, 31, 'image', 'Vincent Sabina Jr', 'Employee', '97.5', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:24:04', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1152, 31, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:00:47', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1153, 31, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-28', '7:00:35', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1154, 31, 'image', 'Stranger', 'Stranger', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '16:04:30', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1155, 31, 'image', 'Stranger', 'Stranger', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '16:04:15', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1156, 31, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '15:33:08', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1157, 31, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '15:30:52', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1158, 31, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '15:29:01', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1159, 31, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '15:28:14', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1160, 31, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '15:21:42', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1161, 31, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:59:51', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1162, 31, 'image', 'Chris Sabina', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:59:11', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1163, 31, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:36:52', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1164, 31, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:35:31', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1165, 31, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:31:47', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1166, 31, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:29:58', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1167, 31, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:28:26', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1168, 31, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:25:23', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1169, 31, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '14:24:40', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1170, 31, 'image', 'Chris Sabina', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:59:49', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1171, 31, 'image', 'Chris Sabina', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:59:40', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1172, 31, 'image', 'Chris Sabina', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:39:39', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1173, 31, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:18:46', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1174, 31, 'image', 'Chris Sabina', 'Employee', '97.0', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:18:37', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1175, 31, 'image', 'Chris Sabina', 'Employee', 'None', 'Normal', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:18:29', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1176, 31, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:01:56', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1177, 31, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:00:35', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1178, 31, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:00:26', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1179, 31, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:00:18', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1180, 31, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '8:00:01', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1181, 31, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:59:56', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1182, 31, 'image', 'Chris Sabina', 'Employee', '98.1', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:59:51', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1183, 31, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:59:39', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1184, 31, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:49:40', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1185, 31, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:44:58', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1186, 31, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:44:50', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1187, 31, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:40:12', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1188, 31, 'image', 'Chris Sabina', 'Employee', '97.5', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:38:25', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1189, 31, 'image', 'Chris Sabina', 'Employee', '97.9', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:38:12', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1190, 31, 'image', 'Chris Sabina', 'Employee', '97.7', 'Normal body temperature', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:34:38', NULL, NULL, NULL, '2020-09-05', '2020-09-05'),
+(1191, 31, 'image', 'Chris Sabina', 'Employee', '97.7', 'No mask', 'XF-TM-100', 'Face swiping', '2020-08-27', '7:31:38', NULL, NULL, NULL, '2020-09-05', '2020-09-05');
 
 -- --------------------------------------------------------
 
@@ -231,6 +231,7 @@ CREATE TABLE `settings` (
   `multiple_record_time` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `skip_mask` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `threshold_temperature` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `max_hours_per_day` int(11) NOT NULL DEFAULT 10,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -239,8 +240,8 @@ CREATE TABLE `settings` (
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`id`, `multiple_record_time`, `skip_mask`, `threshold_temperature`, `created_at`, `updated_at`) VALUES
-(1, '3', '1', '100', NULL, '2020-09-03 06:23:24');
+INSERT INTO `settings` (`id`, `multiple_record_time`, `skip_mask`, `threshold_temperature`, `max_hours_per_day`, `created_at`, `updated_at`) VALUES
+(1, '1', '1', '100', 10, NULL, '2020-09-05 03:53:08');
 
 -- --------------------------------------------------------
 
@@ -266,36 +267,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `user_type`, `is_active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'dhiraj', 'admin@gmail.com', NULL, '$2y$12$rXjyqrc0LTtNc/hh3tw7r..f3eDNfWz5i0hWxuJYAo1OgiT7nx8ku', 'admin', 1, NULL, NULL, NULL),
-(2, 'user1', 'user1@gmail.com', NULL, '$2y$12$hTcanXwWa6piGSRxLxq4PueJw0ysT1dDhazChqyDzfh1el24ZSDlC', 'user', 1, NULL, NULL, NULL),
-(3, 'user2', 'user2@gmail.com', NULL, '$2y$12$5NH1VZXTKLT9Jyupr7MGg.vd79BuFAtmB1fKvcjdT8KoYxZNhZaHS', 'user', 1, NULL, NULL, NULL),
-(4, 'user3', 'user3@gmail.com', NULL, '$2y$12$bFXL45jIJKabwjgwtuJ6fOS0oRdm2c920cJ/j/d1daW5v8.wFcKCa', 'user', 1, NULL, NULL, NULL),
-(5, 'ddsdds', 'd1@t.com', NULL, '$2y$10$fXjyHDGLL5pagMVgxjxoJuF4msaygbGuryun4sxHi9h2XJs//viK2', 'user', 0, NULL, '2020-09-03 07:50:57', '2020-09-03 07:50:57'),
-(6, 'sdddsd', 'sdsd@d.com', NULL, '$2y$10$intnQ5K1ORwGSBvDMIiKoexDQyw.CnGBnJceIQBndJ6DOt0D0/o4a', 'user', 0, NULL, '2020-09-03 08:01:37', '2020-09-03 08:01:37'),
-(7, 'dsdssd', 'dsdssd@g.com', NULL, '$2y$10$Uj98v4ldyXjDTOUNHUHmqugKDkPNMI0yQ49xoK.Ba3XsFdzWqq03y', 'user', 0, NULL, '2020-09-03 08:02:22', '2020-09-03 08:02:22'),
-(8, 'dsdssd', 'dsdssd1@g.com', NULL, '$2y$10$06NT.sdWCur50qapGqisrOUasfCgHRN8yZWPKtj21UejpgdtTu60m', 'user', 0, NULL, '2020-09-03 08:04:39', '2020-09-03 08:04:39'),
-(9, 'dsdssd', 'dsdssd2@g.com', NULL, '$2y$10$Va1DOkHEhY8Rw4RLMaAw6e96WjAEXIU7ywCc0xYkUh8WDvqJvhY8y', 'user', 0, NULL, '2020-09-03 08:05:14', '2020-09-03 08:05:14'),
-(10, 'dsdssd', 'dsdssd3@g.com', NULL, '$2y$10$oobYC58I24KMl4DbPuEMKOJGjIfuCO5wy3QqBaJZzZKBcwR/i/m0m', 'user', 0, NULL, '2020-09-03 08:07:00', '2020-09-03 08:07:00'),
-(11, 'dsdssd', 'dsdssd4@g.com', NULL, '$2y$10$Bpx.i4G8PbdpKMrMMc4jX.IdDuFEgsHcjb5EAgrQNNHHYU0e8kcQ.', 'user', 0, NULL, '2020-09-03 08:07:44', '2020-09-03 08:07:44'),
-(12, 'dsdssd', 'dsdssd5@g.com', NULL, '$2y$10$9yUB.fkqhod5kwGwdXpevO2Git8K2Re29oUY.sVv27b84j74QrP4O', 'user', 0, NULL, '2020-09-03 08:08:52', '2020-09-03 08:08:52'),
-(13, 'dsdssd', 'dsdssd6@g.com', NULL, '$2y$10$NlLhgJ0F0fb/ylg./kDqB.kFM2jALQo530nPOg/G0UU24nX061NL.', 'user', 0, NULL, '2020-09-03 08:09:19', '2020-09-03 08:09:19'),
-(14, 'dsfsdf', 'dsfsdf@g.com', NULL, '$2y$10$2bsb.h8A3QuwUBEmdUZVWuMPZvr0dcCX7HaTS2bDEyToc/M0B8QMa', 'user', 0, NULL, '2020-09-03 08:13:56', '2020-09-03 08:13:56'),
-(15, 'dsfsdf', 'dsfsdf1@g.com', NULL, '$2y$10$UPYeMwF83KxYe.hejgMGYub.qXJN4vZSeZNmCM4TQONrEg0.LZhSy', 'user', 0, NULL, '2020-09-03 08:17:47', '2020-09-03 08:17:47'),
-(16, 'dsfsdf', 'dsfsdf11@g.com', NULL, '$2y$10$THNy5ohOOmkWLUB4DsgaK.A.CfuX8jhiG53TiX.FPvunJc37pVqJ6', 'user', 0, NULL, '2020-09-03 08:21:34', '2020-09-03 08:21:34'),
-(17, 'dsdfds', 'dsdfds@g.com', NULL, '$2y$10$W6r6.UlpGzhj8a1uESCK3.SCx5voJQ08ZeMraDsN6yMfjWLLfRSuq', 'user', 0, NULL, '2020-09-03 08:22:03', '2020-09-03 08:22:03'),
-(18, 'asdasd', 'asdasd@g.com', NULL, '$2y$10$OCwW4QRimXR5lG08r1DbB.oOSuKAA9pDYBEynsj/EQvwGZ/JCLSye', 'user', 0, NULL, '2020-09-03 08:27:43', '2020-09-03 08:27:43'),
-(19, 'sdfsdf', 'sdfsdf@g.com', NULL, '$2y$10$Tp1oQoNJOGffjItK3xbi7.V3iNc8lap40gWHgWB82P1ozVYXDd8Oa', 'user', 0, NULL, '2020-09-03 08:28:44', '2020-09-03 08:28:44'),
-(20, 'dfdfgdfgfg', 'dfdfgdfgfg@g.com', NULL, '$2y$10$dF8MHEWb2mElHMHtwE8ex.q8W0FAXP9wpvzlPBUZEgHOPrS0C3RPW', 'user', 0, NULL, '2020-09-03 08:31:20', '2020-09-03 08:31:20'),
-(21, 'asdsdasadsd', 'asdsdasadsd@g.com', NULL, '$2y$10$1wJuwpdvFDI/r0KYINALOOlJSxKA8HUKewBW7ZTe7bHcX4YPbbJfa', 'user', 0, NULL, '2020-09-03 08:37:56', '2020-09-03 08:37:56'),
-(22, 'asdds', 'asdds@g.com', NULL, '$2y$10$apYMIjCJigkzi5YP/TOB6esrXYF892OYX4cu2YfgSb65Brwpwpamu', 'user', 0, NULL, '2020-09-03 08:39:18', '2020-09-03 08:39:18'),
-(23, 'asdds', 'asdds1@g.com', NULL, '$2y$10$Uy1H2.603sPXL61gzS4lzOWR84wIz.gX1SCrrY6tMC7QmvhjyMAXS', 'user', 0, NULL, '2020-09-03 08:39:56', '2020-09-03 08:39:56'),
-(24, 'asdds12@g.com', 'asdds12@g.com', NULL, '$2y$10$8d.N0CmtlCoJeVkbIqrKfeXNDppfmtWL1wg6q7jhvhQdkHvCPtay.', 'user', 0, NULL, '2020-09-03 08:40:46', '2020-09-03 08:40:46'),
-(25, 'asdds121@g.com', 'asdds121@g.com', NULL, '$2y$10$BmvU2VBO.vhBXPh9NR7xIud6sTbVl1r6mOSkBLpOzGaZLFNKAWU7K', 'user', 0, NULL, '2020-09-03 08:41:03', '2020-09-03 08:41:03'),
-(26, 'newuser', 'newuser1@gmail.com', NULL, '$2y$10$EjlvY6khOC9j0GlBAMG5.e9VfB5wgXVwM8zhzmNzVuHkPxDGhcLSu', 'user', 0, NULL, '2020-09-03 23:49:40', '2020-09-03 23:49:40'),
-(27, 'adfsd', 'adfsd@gmail.com', NULL, '$2y$10$4Wb63g6hA.8bhXV4EXDkEuDnS/1Ktic9Sq8lH3bwiIgvLQskMlK.G', 'user', 0, NULL, '2020-09-03 23:52:42', '2020-09-03 23:52:42'),
-(28, 'dfdsf', 'dfdsf@g.com', NULL, '$2y$10$3Xu4ORNi/GQyog9r.6t/xOqNw8dMIvZX8a1QOFvPBt2mZ60vy9BcW', 'user', 0, NULL, '2020-09-03 23:54:21', '2020-09-03 23:54:21'),
-(29, 'dasdsad', 'dasdsad@f.com', NULL, '$2y$10$KuVoQ.s.9lT5SimLuWqmY.78HbjN3IG/te7WX8Q8vBISwrAkGK1ua', 'user', 0, NULL, '2020-09-03 23:55:18', '2020-09-03 23:55:18'),
-(30, 'asdsda', 'asdsda@d.com', NULL, '$2y$10$ct.Dg2jzbEhpHH0i4hJRKOiTJ5sakP9xOy9DW5rpqc1mz4HXfHe9O', 'user', 0, NULL, '2020-09-03 23:56:08', '2020-09-03 23:56:08');
+(31, 'admin@g.com', 'admin@g.com', NULL, '$2y$10$MVNVdVIEYpyup8wiqo5OkuSSwdSJGbm.95hIpJAp2LliVlGObbDdO', 'admin', 1, NULL, '2020-09-05 00:05:28', '2020-09-05 00:05:28'),
+(32, 'user1@g.com', 'user1@g.com', NULL, '$2y$10$MVNVdVIEYpyup8wiqo5OkuSSwdSJGbm.95hIpJAp2LliVlGObbDdO', 'user', 1, NULL, '2020-09-05 00:05:28', '2020-09-05 00:05:28'),
+(33, 'user2', 'user2@g.com', NULL, '$2y$10$p5vzQ0ONUkHS29ldlZN8ReBeFkIBo00wOYXlaEbWCsxHdoVW1iVau', 'user', 1, NULL, '2020-09-05 08:36:34', '2020-09-05 08:37:17');
 
 --
 -- Indexes for dumped tables
@@ -323,7 +297,8 @@ ALTER TABLE `failed_jobs`
 -- Indexes for table `import`
 --
 ALTER TABLE `import`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`,`creation_date`,`creation_time`);
 
 --
 -- Indexes for table `migrations`
@@ -376,7 +351,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `import`
 --
 ALTER TABLE `import`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1122;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1192;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -394,7 +369,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

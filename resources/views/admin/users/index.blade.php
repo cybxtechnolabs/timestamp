@@ -6,13 +6,18 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Users</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route('admin.users') }}">Users</a></li>
-            </ol>
+        <div class="col-sm-12">
+            @if(session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session()->get('error') }}
+                </div>
+            @endif
+
+            @if(session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -37,6 +42,7 @@
                       <th>Name</th>
                       <th>Email</th>
                       <th>Registered at</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -44,9 +50,20 @@
                       @foreach($users as $user)
                         <tr>
                           <td>{{ $user->id }}</td>
-                          <td>{{ $user->first_name.' '.$user->last_name }}</td>
+                          <td>{{ $user->name }}</td>
                           <td>{{ $user->email }}</td>
                           <td>{{ $user->created_at }}</td>
+                          <td>   
+                          @if(($user->is_active) > 0) 
+                              Registered User
+                          @else   
+                              <a class="btn btn-info btn-sm" href="{{ url('admin/users/approve/'.$user->id) }}">
+                                  <i class="fas fa-pencil-alt">
+                                  </i>
+                                  Approve User
+                              </a>
+                          @endif
+                          </td>
                         </tr>
                       @endforeach
                     @else

@@ -18,21 +18,34 @@ class BulkImport implements ToModel
         $user = Auth::user();
         
         if($row[1] != '' && $row[1] != 'Name' ) {
+        //check if this entry already uploaded
+        //check if same creation_date, creation_time, name already exist
+        //if yes then skip
+            $recordExist = Bulk::where('name','=',$row[1])
+                        ->where('creation_date','=', $row[7])
+                        ->where('creation_time','=', $row[8])
+                        ->get();
 
-            return new Bulk([
-                'imported_by' => $user->id,
-                'snap_photo'        => 'image', //$row[0],
-                'name'    => $row[1],
-                'staff'    => $row[2],
-                'body_temperature'    => str_replace("℉","", $row[3]),
-                'pass_status'    => $row[4],
-                'device_name'    => $row[5],
-                'access_direction'    => $row[6],
-                'creation_date'    => $row[7],
-                'creation_time'    => $row[8],
-                'id_card'    => $row[9],
-                'ic_card'    => $row[10],
-            ]);
+            if(count($recordExist) == 0){
+                return new Bulk([
+                    'imported_by' => $user->id,
+                    'snap_photo'        => 'image', //$row[0],
+                    'name'    => $row[1],
+                    'staff'    => $row[2],
+                    'body_temperature'    => str_replace("℉","", $row[3]),
+                    'pass_status'    => $row[4],
+                    'device_name'    => $row[5],
+                    'access_direction'    => $row[6],
+                    'creation_date'    => $row[7],
+                    'creation_time'    => $row[8],
+                    'id_card'    => $row[9],
+                    'ic_card'    => $row[10],
+                ]);
+            } else {
+                //get all duplicate records entry to display back on the page with error message
+                
+            }
+
         }
         
     }
