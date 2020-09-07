@@ -106,6 +106,15 @@ class ImportController extends Controller
                 // echo '</tr>';
 
                 $Bulk = new Bulk;
+
+                //check if record already exist
+                $recordExist = Bulk::where('name','=',$value[1])
+                        ->where('creation_date','=', $value[7])
+                        ->where('creation_time','=', $value[8])
+                        ->get();
+
+               if(count($recordExist) != 0){
+
                 $Bulk->imported_by = $user->id;
                 $Bulk->snap_photo = 'data:image/jpeg;base64,' . base64_encode($imageContents);
                 $Bulk->name = $value[1];
@@ -122,68 +131,30 @@ class ImportController extends Controller
 
                 $Bulk->save();
 
-                // Bulk([
-                //     'imported_by' => $user->id,
-                //     'snap_photo'        => $row[0],
-                //     'name'    => $row[1],
-                //     'staff'    => $row[2],
-                //     'body_temperature'    => str_replace("℉","", $row[3]),
-                //     'pass_status'    => $row[4],
-                //     'device_name'    => $row[5],
-                //     'access_direction'    => $row[6],
-                //     'creation_date'    => $row[7],
-                //     'creation_time'    => $row[8],
-                //     'id_card'    => $row[9],
-                //     'ic_card'    => $row[10],
-                // ])
+               } else {
+                $recordExist = BulkDuplicate::where('name','=',$value[1])
+                ->where('creation_date','=', $value[7])
+                ->where('creation_time','=', $value[8])
+                ->get();
+                if(count($recordExist) == 0){
+                    return new BulkDuplicate([
+                        'imported_by' => $user->id,
+                        'snap_photo'        => 'image', //$row[0],
+                        'name'    => $value[1],
+                        'staff'    => $value[2],
+                        'body_temperature'    => str_replace("℉","", $value[3]),
+                        'pass_status'    => $value[4],
+                        'device_name'    => $value[5],
+                        'access_direction'    => $value[6],
+                        'creation_date'    => $value[7],
+                        'creation_time'    => $value[8],
+                        'id_card'    => $value[9],
+                        'ic_card'    => $value[10],
+                        //'excel_row'    => $row[10],
+                    ]);
+                }
+               }
             }
-           
-            // foreach ($objWorksheet->getDrawingCollection() as $key=> $drawing) {
-   
-            //     //for XLSX format
-            //     $string = $drawing->getCoordinates();
-            //     //print_r($string); //die();
-            //     $coordinate = PHPExcel_Cell::coordinateFromString($string);
-                
-            //     if ($drawing instanceof PHPExcel_Worksheet_Drawing){
-            //     $filename = $drawing->getPath();
-            //     echo '<pre>';print_r($filename);echo '</pre>';
-            //     $drawing->getDescription();
-            //     //echo '<pre>';print_r($drawing);echo '</pre>';
-            //     copy($filename, 'uploads/' .'image_'.$key.'.jpg');
-            //     //move_uploaded_file('image_'.$key.'.jpg', 'uploads/' . $drawing->getDescription());
-            //     }
-            //     }
-           // dd($path);
-            
-
-            //$data = Excel::import(new BulkImport, request()->file('file'));
-
-          //  $xlsFile = $path ;
-
-
-//  $objReader = new \PHPExcel_Reader_Excel2007();
-//  //   dd($objReader->setReadDataOnly(true));
-// // //$objReader->setReadDataOnly(true);
-// $data = $objReader->load($xlsFile);
-// $objWorksheet = $data->getActiveSheet();
-
-// foreach ($objWorksheet->getDrawingCollection() as $key=> $drawing) {
-   
-// //for XLSX format
-// $string = $drawing->move();
-// //print_r($string); //die();
-// $coordinate = PHPExcel_Cell::coordinateFromString($string);
-
-// if ($drawing instanceof PHPExcel_Worksheet_Drawing){
-// $filename = $drawing->getPath();
-// echo '<pre>';print_r($filename);echo '</pre>';
-// $drawing->getDescription();
-// //echo '<pre>';print_r($drawing);echo '</pre>';
-// copy($filename, 'uploads/' .'image_'.$key.'.jpg');
-// //move_uploaded_file('image_'.$key.'.jpg', 'uploads/' . $drawing->getDescription());
-// }
-// }
             
             $duplicateData = []; //BulkDuplicate::all();
 
