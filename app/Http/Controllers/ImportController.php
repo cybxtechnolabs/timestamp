@@ -137,31 +137,49 @@ class ImportController extends Controller
                 ->where('creation_time','=', $value[8])
                 ->get();
                 if(count($recordExistDuplicate) == 0){
-                    return new BulkDuplicate([
-                        'imported_by' => $user->id,
-                        'snap_photo'        => 'image', //$row[0],
-                        'name'    => $value[1],
-                        'staff'    => $value[2],
-                        'body_temperature'    => str_replace("℉","", $value[3]),
-                        'pass_status'    => $value[4],
-                        'device_name'    => $value[5],
-                        'access_direction'    => $value[6],
-                        'creation_date'    => $value[7],
-                        'creation_time'    => $value[8],
-                        'id_card'    => $value[9],
-                        'ic_card'    => $value[10],
-                        //'excel_row'    => $row[10],
-                    ]);
+                    $BulkDuplicate =  new BulkDuplicate;
+                    $BulkDuplicate->imported_by = $user->id;
+                $BulkDuplicate->snap_photo = 'image';
+                $BulkDuplicate->name = $value[1];
+                $BulkDuplicate->staff = $value[2];
+                $BulkDuplicate->body_temperature = $value[3];
+                $BulkDuplicate->pass_status = $value[4];
+                $BulkDuplicate->device_name = $value[5];
+                $BulkDuplicate->access_direction = $value[6];
+                $BulkDuplicate->creation_date = $value[7];
+                $BulkDuplicate->creation_time = $value[8];
+                $BulkDuplicate->id_card = $value[9];
+                $BulkDuplicate->ic_card = $value[10];
+
+
+                $BulkDuplicate->save();
+
+
+                    // $BulkDuplicate =  new BulkDuplicate([
+                    //     'imported_by' => $user->id,
+                    //     'snap_photo'        => 'image', //$row[0],
+                    //     'name'    => $value[1],
+                    //     'staff'    => $value[2],
+                    //     'body_temperature'    => str_replace("℉","", $value[3]),
+                    //     'pass_status'    => $value[4],
+                    //     'device_name'    => $value[5],
+                    //     'access_direction'    => $value[6],
+                    //     'creation_date'    => $value[7],
+                    //     'creation_time'    => $value[8],
+                    //     'id_card'    => $value[9],
+                    //     'ic_card'    => $value[10],
+                    //     //'excel_row'    => $row[10],
+                    // ]);
                 }
                }
             }
             
-            $duplicateData = []; //BulkDuplicate::all();
+            $duplicateData = BulkDuplicate::all();
 
 
         
             return view('import.import')->with('duplicateData', $duplicateData)
-                    ->with('success', 'Uploaded files, it will check for duplicate entries. Please ensure in your report!');
+                    ->with('success', 'Uploaded files successfully. If there exists any duplicate entry it will be shown below');
 
         } else {
             return back()->with('error', 'Select file');
