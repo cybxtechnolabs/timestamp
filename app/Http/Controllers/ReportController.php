@@ -199,7 +199,8 @@ class ReportController extends Controller
                     //get temp here to not disturb the existing array structure
                     $getTempIn = Bulk::select('body_temperature')->where('imported_by', $user_id)->where('name', $d)->where('creation_date', $u)->where('creation_time', $checkinCurrent)->first();
                     $getTempOut = Bulk::select('body_temperature')->where('imported_by', $user_id)->where('name', $d)->where('creation_date', $u)->where('creation_time', $checkOutCurrent)->first();
-                   // echo "<pre>$d -$u - $checkOutCurrent t- ";
+                    
+                     // echo "<pre>$d -$u - $checkOutCurrent t- ";
                     //print_r ($getTempIn->body_temperature);
                     //  if(!$getTempOut) {
                     //     print_r($d);
@@ -211,6 +212,7 @@ class ReportController extends Controller
                     $tempout = ($getTempOut) ? $getTempOut->body_temperature : '-';
 
                     $reportData[$d][$u][] = [
+                            
                             'in'=>$checkinCurrent, 'out'=>$checkOutCurrent, 
                             'tempin' => $tempin, 'tempout' => $tempout, 'duration'=>$duration,
                     ];
@@ -269,8 +271,8 @@ class ReportController extends Controller
         $end = date("Y-m-d", strtotime($request->end_date));
 
         //get settings available
-        $Setting = Setting::find(1);
-
+        $Setting = Setting::where('user_id', $user_id)->first();
+          //  dd($Setting[0]->threshold_temperature);
         //TODO - check daywise filter, weekly filter or monthly filter
        // $data  = getReportData();
 
@@ -289,7 +291,7 @@ class ReportController extends Controller
 
         $reportsData = $reports->get();
 
-        //dd($reportsData);
+      //  dd($reportsData);
         $r_data = [];
         $thisuser_creation = [];
         $x = null;
@@ -422,7 +424,8 @@ class ReportController extends Controller
                     //get temp here to not disturb the existing array structure
                     $getTempIn = Bulk::select('body_temperature')->where('imported_by', $user_id)->where('name', $d)->where('creation_date', $u)->where('creation_time', $checkinCurrent)->first();
                     $getTempOut = Bulk::select('body_temperature')->where('imported_by', $user_id)->where('name', $d)->where('creation_date', $u)->where('creation_time', $checkOutCurrent)->first();
-                   // echo "<pre>$d -$u - $checkOutCurrent t- ";
+                    $image = Bulk::select('snap_photo')->where('imported_by', $user_id)->where('name', $d)->where('creation_date', $u)->where('creation_time', $checkinCurrent)->first();
+                   //  echo "<pre>$d -$u - $checkOutCurrent t- ";
                     //print_r ($getTempIn->body_temperature);
                     //  if(!$getTempOut) {
                     //     print_r($d);
@@ -432,10 +435,12 @@ class ReportController extends Controller
                     // }
                     $tempin = ($getTempIn) ? $getTempIn->body_temperature : '-';
                     $tempout = ($getTempOut) ? $getTempOut->body_temperature : '-';
-
+                    $image = ($image) ? $image->snap_photo : '-';
                     $reportData[$d][$u][] = [
+                            'image' => $image,
                             'in'=>$checkinCurrent, 'out'=>$checkOutCurrent, 
-                            'tempin' => $tempin, 'tempout' => $tempout, 'duration'=>$duration,
+                            'tempin' => $tempin, 'tempout' => $tempout, 
+                            'duration'=>$duration,
                     ];
                     $dayhrs = strtotime($duration) + $dayhrs;
                 }
@@ -452,7 +457,7 @@ class ReportController extends Controller
             $reportData[$d]['totalhrs'] = $totalhrs;
         }
 
-        //dd($reportData);
+       // dd($reportData);
         $dateSelected = [
             'start_date' => date("m/d/Y", strtotime($request->start_date)),
             'end_date' => date("m/d/Y", strtotime($request->end_date))

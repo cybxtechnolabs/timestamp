@@ -37,7 +37,7 @@
               <!-- /.card-header -->
               <div class="card-body p-2 m-3">
                 <!--begin::Form-->
-                <form action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
+                <form id="uploadForm" action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
                      {{ csrf_field() }}
                     <div class="form-group">
                         <label for="exampleFormControlFile1">Example file input</label>
@@ -55,7 +55,7 @@
           </div>
         </div>
       </div>
-      @if($duplicateData)
+      @if(count($duplicateData) > 0 )
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
@@ -90,5 +90,25 @@
 
   </div>
 @endsection
-
+@push('after-script')
+  <!-- <script type="text/javascript">
+    $(document).ready(function (e){
+    $("#uploadForm").on('submit',(function(e){
+    e.preventDefault();
+    $.ajax({
+    url: "uploadExcel.php",
+    type: "POST",
+    data:  new FormData(this),
+    contentType: false,
+    cache: false,
+    processData:false,
+    success: function(data){
+    $("#targetLayer").html(data);
+    },
+    error: function(){} 	        
+    });
+    }));
+    });
+  </script> -->
+@endpush
 

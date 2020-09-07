@@ -15,7 +15,7 @@ class BulkImport implements ToModel
     */
     public function model(array $row)
     {
-      // print_r($row);
+       //print_r($row); dd();
         $user = Auth::user();
         
         if($row[1] != '' && $row[1] != 'Name' ) {

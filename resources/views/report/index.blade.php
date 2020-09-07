@@ -79,10 +79,11 @@
                           <div class="">
                             <table class="table" border="1px">
                               <thead class="thead-dark" id="myTable">
-                                <tr><th colspan="6">{{$u}}</th></tr>
+                                <tr><th colspan="7">{{$u}}</th></tr>
                                 <tr>
                                   
                                   <th scope="col">Date</th>
+                                  <th scope="col">Image</th>
                                   <th scope="col">Check In</th>
                                   <th scope="col">Check Out</th>
                                   <th scope="col">Temp In</th>
@@ -102,6 +103,8 @@
                                               @foreach ($inout  as  $i => $check)
                                                 @if($i == 'in')
                                                 <td>{{$check}}</td>
+                                                @elseif($i == 'image')
+                                                <td><img  height="80px" width="80px"   src="{{$check}}"/></td>
                                                 @else
                                                 <td>{{$check}}</td>
                                                 @endif
@@ -117,7 +120,7 @@
                               </tbody>
                               <tfoot>
                                 <tr >
-                                <td colspan=6>Total Hrs: {{$userData[$d]}}</td>
+                                <td colspan=7>Total Hrs: {{$userData[$d]}}</td>
                                 </tr>
                               </tfoot>
                               </table>
