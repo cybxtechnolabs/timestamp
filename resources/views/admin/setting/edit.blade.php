@@ -41,7 +41,7 @@
               <div class="card-body p-0">
  
 
-    <form action="{{ route('admin.settingupdate',['id'=> $Setting->id]) }}" method="post" class="border rounded p-5">    
+    <form action="{{ route('settingupdate',['id'=> $Setting->id]) }}" method="post" class="border rounded p-5">    
     {{ csrf_field() }}
         <div class="form-group">
             <label for="multiple_record_time">Multiple Record Time</label>
@@ -77,9 +77,25 @@
             <label for="threshold_temperature">Max Hours Per Day</label>
             <input type="text" class="form-control" id="max_hours_per_day"  name="max_hours_per_day" value="{{$Setting->max_hours_per_day}}">
         </div>
+
+        <label class="form-check-label" for="skip_unknown">
+               <strong> Skip Unknown </strong> 
+        </label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="skip_unknown" id="skip_unknown1" value="1" {{($Setting->skip_unknown == 1) ? 'checked':'' }}>
+            <label class="form-check-label" for="exampleRadios1">
+                On
+            </label>
+            </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="skip_unknown" id="skip_unknown2" value="0" {{($Setting->skip_unknown == 1) ? '':'checked' }}>
+            <label class="form-check-label" for="exampleRadios2">
+                Off
+            </label>
+        </div>
         
         
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
     </form>
 
     </div>

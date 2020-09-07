@@ -9,6 +9,7 @@ use App\Exports\BulkExport;
 use App\Imports\BulkImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Bulk;
+use App\BulkDuplicate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,14 +22,18 @@ class ImportController extends Controller
 
     public function index()
     {
-        return view('import.import');
+        //delete any duplicate records if exist
+        BulkDuplicate::truncate();
+        $duplicateData = [];
+
+        return view('import.import')->with('duplicateData', $duplicateData);
     }
 
 
     public function uploadexcel(Request $request)
     {
         //TODO - make sure to avoid duplicate data
-        
+        //$user_id = Auth::user()->id;
         if($request->hasFile('file')){
             //check if file format is correct
             $ext = $request->file('file')->getClientOriginalExtension();
@@ -40,8 +45,13 @@ class ImportController extends Controller
             $path = $request->file('file')->getRealPath();
 
             $data = Excel::import(new BulkImport, request()->file('file'));
+            
+            $duplicateData = BulkDuplicate::all();
 
-             return back()->with('success', 'Uploaded files, it will check for duplicate entries. Please ensure in your report!');
+
+        
+            return view('import.import')->with('duplicateData', $duplicateData)
+                    ->with('success', 'Uploaded files, it will check for duplicate entries. Please ensure in your report!');
 
         } else {
             return back()->with('error', 'Select file');

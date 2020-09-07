@@ -21,15 +21,7 @@
                     </p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.setting') }}" class="nav-link">
-                    <i class="nav-icon fas fa-circle"></i>
-                    <p>
-                        Settings
-                    </p>
-                </a>
-            </li>
-
+            
             @endif
 
             <li class="nav-item">
@@ -46,6 +38,15 @@
                     <i class="nav-icon fas fa-circle"></i>
                     <p>
                         Reports
+                    </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('setting') }}" class="nav-link">
+                    <i class="nav-icon fas fa-circle"></i>
+                    <p>
+                        My Settings
                     </p>
                 </a>
             </li>

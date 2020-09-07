@@ -52,6 +52,10 @@ $app->singleton(
 |
 */
 
+
 $app->bind('path.public', function() { return base_path().'/public_html'; });
 
+
+//$app->register(\Barryvdh\DomPDF\ServiceProvider::class);
+//$app->configure('dompdf');
 return $app;

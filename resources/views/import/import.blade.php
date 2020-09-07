@@ -55,7 +55,39 @@
           </div>
         </div>
       </div>
+      @if($duplicateData)
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card m-2 p-2">
+            
+           
+            <h3>Duplicate Entries Found as below:</h3>
+            <table class="table">
+              <tbody>
+              @foreach($duplicateData as $duplicateEntry)
+              <tr>
+              <td>{{$duplicateEntry->name}}</td>
+              <td>{{$duplicateEntry->staff}}</td>
+              <td>{{$duplicateEntry->body_temperature}}</td>
+              <td>{{$duplicateEntry->pass_status}}</td>
+              <td>{{$duplicateEntry->creation_date}}</td>
+              <td>{{$duplicateEntry->creation_time}}</td>
+              </tr>
+              
+
+              @endforeach
+              </tbody>
+           
+            
+
+            </div>
+          </div>
+        </div>
+        @endif
     </section>
+
+
   </div>
 @endsection
 
