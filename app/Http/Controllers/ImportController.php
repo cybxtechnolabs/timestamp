@@ -113,7 +113,7 @@ class ImportController extends Controller
                         ->where('creation_time','=', $value[8])
                         ->get();
 
-               if(count($recordExist) != 0){
+               if(count($recordExist) == 0){
 
                 $Bulk->imported_by = $user->id;
                 $Bulk->snap_photo = 'data:image/jpeg;base64,' . base64_encode($imageContents);
@@ -132,11 +132,11 @@ class ImportController extends Controller
                 $Bulk->save();
 
                } else {
-                $recordExist = BulkDuplicate::where('name','=',$value[1])
+                $recordExistDuplicate = BulkDuplicate::where('name','=',$value[1])
                 ->where('creation_date','=', $value[7])
                 ->where('creation_time','=', $value[8])
                 ->get();
-                if(count($recordExist) == 0){
+                if(count($recordExistDuplicate) == 0){
                     return new BulkDuplicate([
                         'imported_by' => $user->id,
                         'snap_photo'        => 'image', //$row[0],
