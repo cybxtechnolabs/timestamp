@@ -294,7 +294,7 @@ class ReportController extends Controller
             $reports->where('pass_status', '!=', 'No mask');
         }
         if ($Setting->skip_unknown > 0) {
-            $reports->where('skip_unknown', '!=', 'Stranger');
+            $reports->where('name', '!=', 'Stranger');
         }
 
         $reportsData = $reports->get();
