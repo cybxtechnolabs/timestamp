@@ -293,6 +293,9 @@ class ReportController extends Controller
         if ($Setting->skip_mask > 0) {
             $reports->where('pass_status', '!=', 'No mask');
         }
+        if ($Setting->skip_unknown > 0) {
+            $reports->where('skip_unknown', '!=', 'Stranger');
+        }
 
         $reportsData = $reports->get();
 
