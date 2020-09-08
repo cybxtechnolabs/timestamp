@@ -16,7 +16,7 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `import` (
   `id` int(20) PRIMARY KEY  AUTO_INCREMENT,
   `imported_by` int(10) NOT NULL,
-  `snap_photo` text DEFAULT NULL,
+  `snap_photo` LONGTEXT DEFAULT NULL,
   `name` varchar(200) DEFAULT NULL,
   `staff` varchar(200) DEFAULT NULL,
   `body_temperature` varchar(200) DEFAULT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE `import` (
 CREATE TABLE `import_duplicate` (
   `id` int(20) PRIMARY KEY  AUTO_INCREMENT,
   `imported_by` int(10) NOT NULL,
-  `snap_photo` varchar(200) DEFAULT NULL,
+  `snap_photo` LONGTEXT DEFAULT NULL,
   `name` varchar(200) DEFAULT NULL,
   `staff` varchar(200) DEFAULT NULL,
   `body_temperature` varchar(200) DEFAULT NULL,
