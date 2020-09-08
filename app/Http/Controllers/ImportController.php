@@ -42,22 +42,16 @@ class ImportController extends Controller
         if($request->hasFile('file')){
             //check if file format is correct
             $ext = $request->file('file')->getClientOriginalExtension();
-            $valid_extensions = array('csv', 'xlsx', 'xls');
+            $valid_extensions = array('xlsx', 'xls');
             if (!in_array($ext, $valid_extensions)) {
-                return back()->with('error', 'Invalid file format');
+                return back()->with('error', 'Invalid file format .xls or .xlsx allowed');
             }
 
             $path = $request->file('file')->getRealPath();
 
-            //$pathLocal = $request->file('file')->store('public/storage','report_'.time().'.xlsx');
-            //$filePath = 'storage' . DIRECTORY_SEPARATOR . $request->file('file');
-            //Storage::disk('public')->put($filePath, file_get_contents($request->file('file')));
+            $file = $request['file'];
 
-          //  move_uploaded_file(  $request->file('file')->getRealPath(), 'public/storage/report_'.time().'.xlsx');
-           // dd();
-           $file = $request['file'];
 
-           // public_path()
            $name = $file->getClientOriginalName();
                 $path = public_path()."/upload/";
                 $file->move($path, $name);
@@ -85,29 +79,14 @@ class ImportController extends Controller
 
                 
                 $filename = 'data:image/jpeg;base64,' . base64_encode($imageContents);
-               // print_r("<img   src=\"data:image/jpeg;base64,' . base64_encode($imageContents) . '\"/>");
                 
                 list($type, $filename) = explode(';', $filename);
                 list(, $filename)      = explode(',', $filename);
                 $filename = base64_decode($filename);
-                //dd($filename);
-             //   $pathLocal =  $request->file('file')->storeAs('public/storage','report_'.time().'.jpg');
-                //file_put_contents('/tmp/image.png', $filename);
-
-              //  move_uploaded_file('image_'.$key.'.jpg', public_path()."/upload/".$filename);
-
-                //$file->move($saveImage, $filename);
-
-            
-                // echo '<tr align="center">';
-                // echo '<td>' . $value[0] . '</td>';
-                // echo '<td>' . $value[1] . '</td>';
-                // echo '<td><img  height="150px" width="150px"   src="data:image/jpeg;base64,' . base64_encode($imageContents) . '"/></td>';
-                // echo '</tr>';
 
                 $Bulk = new Bulk;
 
-                //check if record already exist
+                //check if record already exist in our record
                 $recordExist = Bulk::where('name','=',$value[1])
                         ->where('creation_date','=', $value[7])
                         ->where('creation_time','=', $value[8])
@@ -115,61 +94,44 @@ class ImportController extends Controller
 
                if(count($recordExist) == 0){
 
-                $Bulk->imported_by = $user->id;
-                $Bulk->snap_photo = 'data:image/jpeg;base64,' . base64_encode($imageContents);
-                $Bulk->name = $value[1];
-                $Bulk->staff = $value[2];
-                $Bulk->body_temperature = $value[3];
-                $Bulk->pass_status = $value[4];
-                $Bulk->device_name = $value[5];
-                $Bulk->access_direction = $value[6];
-                $Bulk->creation_date = $value[7];
-                $Bulk->creation_time = $value[8];
-                $Bulk->id_card = $value[9];
-                $Bulk->ic_card = $value[10];
-
-
-                $Bulk->save();
-
+                    $Bulk->imported_by = $user->id;
+                    $Bulk->snap_photo = 'data:image/jpeg;base64,' . base64_encode($imageContents);
+                    $Bulk->name = $value[1];
+                    $Bulk->staff = $value[2];
+                    $Bulk->body_temperature = $value[3];
+                    $Bulk->pass_status = $value[4];
+                    $Bulk->device_name = $value[5];
+                    $Bulk->access_direction = $value[6];
+                    $Bulk->creation_date = $value[7];
+                    $Bulk->creation_time = $value[8];
+                    $Bulk->id_card = $value[9];
+                    $Bulk->ic_card = $value[10];
+                    $Bulk->save();
                } else {
-                $recordExistDuplicate = BulkDuplicate::where('name','=',$value[1])
-                ->where('creation_date','=', $value[7])
-                ->where('creation_time','=', $value[8])
-                ->get();
-                if(count($recordExistDuplicate) == 0){
                     $BulkDuplicate =  new BulkDuplicate;
-                    $BulkDuplicate->imported_by = $user->id;
-                $BulkDuplicate->snap_photo = 'image';
-                $BulkDuplicate->name = $value[1];
-                $BulkDuplicate->staff = $value[2];
-                $BulkDuplicate->body_temperature = $value[3];
-                $BulkDuplicate->pass_status = $value[4];
-                $BulkDuplicate->device_name = $value[5];
-                $BulkDuplicate->access_direction = $value[6];
-                $BulkDuplicate->creation_date = $value[7];
-                $BulkDuplicate->creation_time = $value[8];
-                $BulkDuplicate->id_card = $value[9];
-                $BulkDuplicate->ic_card = $value[10];
 
+                    $recordExistDuplicate = BulkDuplicate::where('name','=',$value[1])
+                    ->where('creation_date','=', $value[7])
+                    ->where('creation_time','=', $value[8])
+                    ->get();
+                    
+                    if(count($recordExistDuplicate) == 0){
+                        
+                        $BulkDuplicate->imported_by = $user->id;
+                        $BulkDuplicate->snap_photo = 'image';
+                        $BulkDuplicate->name = $value[1];
+                        $BulkDuplicate->staff = $value[2];
+                        $BulkDuplicate->body_temperature = $value[3];
+                        $BulkDuplicate->pass_status = $value[4];
+                        $BulkDuplicate->device_name = $value[5];
+                        $BulkDuplicate->access_direction = $value[6];
+                        $BulkDuplicate->creation_date = $value[7];
+                        $BulkDuplicate->creation_time = $value[8];
+                        $BulkDuplicate->id_card = $value[9];
+                        $BulkDuplicate->ic_card = $value[10];
 
-                $BulkDuplicate->save();
+                        $BulkDuplicate->save();
 
-
-                    // $BulkDuplicate =  new BulkDuplicate([
-                    //     'imported_by' => $user->id,
-                    //     'snap_photo'        => 'image', //$row[0],
-                    //     'name'    => $value[1],
-                    //     'staff'    => $value[2],
-                    //     'body_temperature'    => str_replace("℉","", $value[3]),
-                    //     'pass_status'    => $value[4],
-                    //     'device_name'    => $value[5],
-                    //     'access_direction'    => $value[6],
-                    //     'creation_date'    => $value[7],
-                    //     'creation_time'    => $value[8],
-                    //     'id_card'    => $value[9],
-                    //     'ic_card'    => $value[10],
-                    //     //'excel_row'    => $row[10],
-                    // ]);
                 }
                }
             }

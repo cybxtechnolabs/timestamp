@@ -272,9 +272,14 @@ class ReportController extends Controller
 
         //get settings available
         $Setting = Setting::where('user_id', $user_id)->first();
-          //  dd($Setting[0]->threshold_temperature);
+        //if no setting found redirect to setting page with msg to add settings first
+        //though we will add default setting whlie one registers
+        if($Setting === null) {
+            return redirect('setting')->with('message', 'Please add your settings before generating report !');
+        }
         //TODO - check daywise filter, weekly filter or monthly filter
        // $data  = getReportData();
+
 
         //get all records filter with settings(skip mask/temperature imported by current user)
         $reports = Bulk::where('imported_by', $user_id)

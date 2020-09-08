@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Setting;
 
 class UserController extends Controller
 {
@@ -32,7 +33,16 @@ class UserController extends Controller
         $Admin = ($user->user_type == 'admin') ? 'Admin' : '';
         $users = User::latest()->paginate(10);
 
-        return view('admin.users.index')->with('users', $users)->with('Admin', $Admin)->with('success', 'User been approved');
+        //also add default settings for this user
+        $Settings = new Setting;
+        $Settings->user_id = $user_id;
+        $Settings->multiple_record_time = 3;
+        $Settings->skip_mask = 1;
+        $Settings->threshold_temperature = 100;
+        $Settings->max_hours_per_day = 10;
+        $Settings->skip_unknown = 1;
+
+        return redirect('admin/users')->with('success', 'User been approved. Default settings also added for him.');
         
     }
 }

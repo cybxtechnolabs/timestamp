@@ -24,6 +24,11 @@
                     {{ session()->get('success') }}
                 </div>
             @endif
+            @if(session()->has('message'))
+                <div class="alert alert-info">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
