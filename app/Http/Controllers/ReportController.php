@@ -10,6 +10,7 @@ use DB;
 use App\Bulk;
 use DateTime;
 use PDF;
+use App\User;
 
 
 class ReportController extends Controller
@@ -264,6 +265,9 @@ class ReportController extends Controller
         //get current user id
         $user_id = Auth::user()->id;
 
+        //$user = Auth::user();
+        
+
         //get filters start date and end date
         // $start = '2020-08-20'; 
         // $end = '2020-09-04';
@@ -280,15 +284,20 @@ class ReportController extends Controller
         //TODO - check daywise filter, weekly filter or monthly filter
        // $data  = getReportData();
 
-
         //get all records filter with settings(skip mask/temperature imported by current user)
-        $reports = Bulk::where('imported_by', $user_id)
-                        ->where([['creation_date','>=', $start], ['creation_date','<=', $end]])
+        $reports = Bulk::where([['creation_date','>=', $start], ['creation_date','<=', $end]])
                         ->where([['body_temperature','<=', (int)$Setting->threshold_temperature]])
-                        ->where([['name','!=', 'Stranger']])
                         ->orderBy('creation_date', 'desc')
                         ->orderBy('name', 'asc')
                         ->orderBy('creation_time');
+
+        $current_user = User::find($user_id);
+        if($current_user->user_type == 'admin') {
+            //if current user is admin he can see all records imported by all users
+            //$reports->where('imported_by', $user_id);
+        } else {
+            $reports->where('imported_by', $user_id);
+        }
 
         if ($Setting->skip_mask > 0) {
             $reports->where('pass_status', '!=', 'No mask');
@@ -296,6 +305,7 @@ class ReportController extends Controller
         if ($Setting->skip_unknown > 0) {
             $reports->where('name', '!=', 'Stranger');
         }
+
 
         $reportsData = $reports->get();
 
@@ -430,9 +440,25 @@ class ReportController extends Controller
                     $durationExtracttotalhrs += $durationExtract;
 
                     //get temp here to not disturb the existing array structure
-                    $getTempIn = Bulk::select('body_temperature')->where('imported_by', $user_id)->where('name', $d)->where('creation_date', $u)->where('creation_time', $checkinCurrent)->first();
-                    $getTempOut = Bulk::select('body_temperature')->where('imported_by', $user_id)->where('name', $d)->where('creation_date', $u)->where('creation_time', $checkOutCurrent)->first();
-                    $image = Bulk::select('snap_photo')->where('imported_by', $user_id)->where('name', $d)->where('creation_date', $u)->where('creation_time', $checkinCurrent)->first();
+                    $getTempIn = Bulk::select('body_temperature')->where('name', $d)->where('creation_date', $u)->where('creation_time', $checkinCurrent);
+                    if($current_user->user_type != 'admin') {$getTempIn->where('imported_by', $user_id); }
+                    $getTempIn = $getTempIn->first();
+                    
+                    
+
+
+                    $getTempOut = Bulk::select('body_temperature')->where('name', $d)->where('creation_date', $u)->where('creation_time', $checkOutCurrent);
+
+                    if($current_user->user_type != 'admin') {$getTempOut->where('imported_by', $user_id); }
+                    $getTempOut = $getTempOut->first();
+                    
+                    $image = Bulk::select('snap_photo')->where('name', $d)->where('creation_date', $u)
+                                    ->where('creation_time', $checkinCurrent);
+
+                    if($current_user->user_type != 'admin') {$image->where('imported_by', $user_id); }
+                    $image = $image->first();
+
+
                    //  echo "<pre>$d -$u - $checkOutCurrent t- ";
                     //print_r ($getTempIn->body_temperature);
                     //  if(!$getTempOut) {

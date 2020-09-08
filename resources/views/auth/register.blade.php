@@ -3,9 +3,14 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+
+        <!-- <span class="alert alert-info col-md-8 mt-2">
+            <strong>Your User account request has been set and awaiting for approval by the admin</strong>
+        </span> -->
+        <div class="col-md-8 mt-2">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
+                
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">

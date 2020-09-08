@@ -131,7 +131,7 @@
                 </div>
 
                 @else
-                <div class="alert alert-danger jsutify-center ">No Data Found</div>
+                <div class="alert alert-danger jsutify-center ">Nothing found imported by you between the selected dates.</div>
                 @endif
             </div>
           </div>
