@@ -138,7 +138,7 @@ class ImportController extends Controller
             
             $duplicateData = BulkDuplicate::all();
 
-
+            
         
             return view('import.import')->with('duplicateData', $duplicateData)
                     ->with('success', 'Uploaded files successfully. If there exists any duplicate entry it will be shown below');
