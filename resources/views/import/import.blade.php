@@ -18,6 +18,12 @@
                 <div class="alert alert-success">
                     {{ session()->get('success') }}
                 </div>
+                
+            @endif
+            @if($success)
+            <div class="alert alert-success">
+                    {{ $success }}
+            </div>
             @endif
           </div><!-- /.col -->
         </div><!-- /.row -->
