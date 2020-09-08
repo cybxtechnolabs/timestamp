@@ -140,7 +140,7 @@ class ImportController extends Controller
 
             
         
-            return view('import.import')->with('duplicateData', $duplicateData)->with('success', 'Uploaded files successfully. If there exists any duplicate entry it will be shown below');
+            return view('import.import')->with('duplicateData', $duplicateData)->with('success', 'Uploaded file successfully. If there exists any duplicate entry it will be shown below');
 
         } else {
             return back()->with('error', 'Select file');
