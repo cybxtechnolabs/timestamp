@@ -37,16 +37,42 @@
                 
                     <div class="" >
                         <div class="row">
-                            <div class="form-group col-xs-4 p-1">
+                            <div class="form-group col-xs-2 p-1">
                                 <!-- <input type='text' class="form-control" id='datepicker' placeholder='Select Date' style='width: 100px;' > -->
                                 <input class="date form-control"  type="text" name="start_date" placeholder='Start Date'  value="{{$dateSelected['start_date']}}">
                             </div> 
-                            <div class="form-group col-xs-4 p-1">
+                            <div class="form-group col-xs-2 p-1">
                                 <!-- <input type='text' class="form-control" id='datepicker2' placeholder='Select Date' style='width: 100px;' > -->
                                 <input class="date form-control"  type="text"  name="end_date" placeholder='End Date' value="{{$dateSelected['end_date']}}">
                             </div>
 
-                            <div class="form-group col-xs-4 p-1">
+                            <!-- <div class="form-group col-xs-4 p-1">
+                                
+                                <input class="date form-control"  type="text" name="start_date" placeholder='Start Date'  value="{{$dateSelected['start_date']}}">
+                            </div>  -->
+                            <!-- <div class="form-group ">
+                              <label for="sel1">Select list:</label>
+                              <select class="form-control" id="sel1">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                              </select>
+                            </div> -->
+                            <!-- Display Imported by selector only for the admin -->
+                            @if($current_user->user_type == 'admin')
+                              <div class="form-group col-xs-3 mt-1">
+                              <select class="custom-select" id="importer" name="importer">
+                                <option value="all"  {{($importer == "all") ? "selected":"" }}  >Imported By All</option>
+                                @foreach($importers as $k => $users)
+                                <option value="{{$users->id}}" {{($importer == $users->id) ? "selected":"" }} >{{$users->name}}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                            @endif
+
+
+                            <div class="form-group col-xs-3 p-1">
                                 <button type="submit" class="btn btn-primary">Generate Report</button>
                                 @if(count($data) > 0)
                                   <input type="button" value="Print Report" class="btn btn-info"  onclick="printDiv()">  

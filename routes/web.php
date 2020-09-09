@@ -18,7 +18,20 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'DashboardController@index');
+//Route::get('/', 'DashboardController@index');
+
+Route::get('/', function () {
+    if(Auth::check()){
+        if(Auth::user()->is_active == 0) { 
+            Auth::logout();
+            return redirect('/login')->with('info', 'Your User account request has been set and awaiting for approval by the admin!');
+        }
+        $Admin = (Auth::user()->user_type == 'admin') ? 'Admin' : '';
+        return view('dashboard')->with('Admin' , $Admin);
+    }
+    return redirect('/login');
+});
+
 
 Route::get('artisan', function(Request $request) {
     return Artisan::call($request->command);

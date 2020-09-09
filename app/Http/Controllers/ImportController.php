@@ -86,9 +86,11 @@ class ImportController extends Controller
 
                 $Bulk = new Bulk;
 
-                //check if record already exist in our record
+                //check if record already exist in our record 
+                //check if existing records for this importer only
                 $recordExist = Bulk::where('name','=',$value[1])
                         ->where('creation_date','=', $value[7])
+                        ->where('imported_by','=', $user->id)
                         ->where('creation_time','=', $value[8])
                         ->get();
 

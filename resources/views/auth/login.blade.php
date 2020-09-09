@@ -20,6 +20,14 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
+  <div class="row">
+      @if (session('info'))
+            <div class="alert alert-info" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                {{ session('info') }}
+            </div>
+      @endif 
+  </div>
   <div class="login-logo">
     <b>Login with Timestamp</b>
   </div>

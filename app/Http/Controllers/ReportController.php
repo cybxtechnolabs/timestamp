@@ -33,7 +33,15 @@ class ReportController extends Controller
             'end_date' => date("m/d/Y"),
         ];
 
-        return view('report.index')->with('user_id', $user_id)->with('setting', $Setting)->with('data', $data)->with('dateSelected', $dateSelected);
+        //get list of all importers (users including admin as of now)
+        $importers = User::all();
+        //dd($importers);
+        $current_user = User::find($user_id);
+        $importer = '';
+
+        return view('report.index')->with('user_id', $user_id)->with('importers', $importers)->with('importer', $importer)
+                                    ->with('setting', $Setting)->with('data', $data)->with('current_user', $current_user)
+                                    ->with('dateSelected', $dateSelected);
     }
     
     public function generateReportpdf($start_date, $end_date) {
@@ -258,15 +266,19 @@ class ReportController extends Controller
             'end_date'=>'required',
         ]);
         
-
+        
         
 
 
         //get current user id
         $user_id = Auth::user()->id;
-
-        //$user = Auth::user();
-        
+        $current_user = User::find($user_id);
+        //user will not pass importer and also if admin have not selected
+        if($current_user->user_type == 'admin') {
+            $importer =  ($request->importer == 'all') ? 'all' : $request->importer;
+        } else {
+            $importer = $user_id;
+        }
 
         //get filters start date and end date
         // $start = '2020-08-20'; 
@@ -291,12 +303,9 @@ class ReportController extends Controller
                         ->orderBy('name', 'asc')
                         ->orderBy('creation_time');
 
-        $current_user = User::find($user_id);
-        if($current_user->user_type == 'admin') {
-            //if current user is admin he can see all records imported by all users
-            //$reports->where('imported_by', $user_id);
-        } else {
-            $reports->where('imported_by', $user_id);
+        //if current user is admin he can see all records imported by all users
+        if($importer != 'all') {
+            $reports->where('imported_by', $importer);
         }
 
         if ($Setting->skip_mask > 0) {
@@ -309,39 +318,16 @@ class ReportController extends Controller
 
         $reportsData = $reports->get();
 
-      //  dd($reportsData);
         $r_data = [];
         $thisuser_creation = [];
         $x = null;
         $sum = strtotime('00:00:00');
         $sum2 = 0;
-       // echo '<pre>';
         if (count($reportsData) > 0) {
             foreach ($reportsData as $report) {
-                //$r_data[$report->creation_date] = 
                 $r_data[$report->name][$report->creation_date] = [];
-
-            //    if($r_data[$report->name][$report->creation_date] != '') {
-            //         $thisuser_creation[$report->name][] = $report->creation_time;
-            //         $r_data[$report->name][$report->creation_date] = $thisuser_creation[$report->name];
-            //    }
-           // if($report->name == 'Chris Sabina') {
                 $thisuser_creation[$report->name][$report->creation_date][] = $report->creation_time;
                 $r_data[$report->name][$report->creation_date] = $thisuser_creation[$report->name][$report->creation_date];
-                
-            //    if(count($r_data[$report->name][$report->creation_date]) > -1) {
-            //      //  if()
-            //     $thisuser_creation[$report->name][$report->creation_date][] = $report->creation_time;
-            //     print_r($thisuser_creation[$report->name]);
-                
-            //    // if(!array_key_exists($report->creation_date, $thisuser_creation[$report->name])) {
-            //         $r_data[$report->name][$report->creation_date] = $thisuser_creation[$report->name];
-            //    // }
-                
-            //     } 
-
-        //} //temp 
-
             }
             
 
@@ -441,32 +427,20 @@ class ReportController extends Controller
 
                     //get temp here to not disturb the existing array structure
                     $getTempIn = Bulk::select('body_temperature')->where('name', $d)->where('creation_date', $u)->where('creation_time', $checkinCurrent);
-                    if($current_user->user_type != 'admin') {$getTempIn->where('imported_by', $user_id); }
+                    if($importer != 'all') {$getTempIn->where('imported_by', $importer); }
                     $getTempIn = $getTempIn->first();
-                    
-                    
-
-
+                
                     $getTempOut = Bulk::select('body_temperature')->where('name', $d)->where('creation_date', $u)->where('creation_time', $checkOutCurrent);
 
-                    if($current_user->user_type != 'admin') {$getTempOut->where('imported_by', $user_id); }
+                    if($importer != 'all') {$getTempOut->where('imported_by', $importer); }
                     $getTempOut = $getTempOut->first();
                     
                     $image = Bulk::select('snap_photo')->where('name', $d)->where('creation_date', $u)
                                     ->where('creation_time', $checkinCurrent);
 
-                    if($current_user->user_type != 'admin') {$image->where('imported_by', $user_id); }
+                    if($importer != 'all') {$image->where('imported_by', $importer); }
                     $image = $image->first();
 
-
-                   //  echo "<pre>$d -$u - $checkOutCurrent t- ";
-                    //print_r ($getTempIn->body_temperature);
-                    //  if(!$getTempOut) {
-                    //     print_r($d);
-                    //     print_r($u);
-                    //     print_r($checkOutCurrent);
-                    //     dd($getTempOut);
-                    // }
                     $tempin = ($getTempIn) ? $getTempIn->body_temperature : '-';
                     $tempout = ($getTempOut) ? $getTempOut->body_temperature : '-';
                     $image = ($image) ? $image->snap_photo : '-';
@@ -497,6 +471,11 @@ class ReportController extends Controller
             'end_date' => date("m/d/Y", strtotime($request->end_date))
         ];
 
-        return view('report.index')->with('data', $reportData)->with('MaxHrs', $MaxHrs)->with('dateSelected', $dateSelected); 
+        //get list of all importers
+        $importers = User::all();
+
+        return view('report.index')->with('data', $reportData)->with('importers', $importers)
+                                    ->with('current_user', $current_user)->with('importer', $importer)
+                                    ->with('MaxHrs', $MaxHrs)->with('dateSelected', $dateSelected); 
     }
 }
