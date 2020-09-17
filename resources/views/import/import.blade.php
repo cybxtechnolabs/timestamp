@@ -41,12 +41,28 @@
                 <h3 class="card-title">Import Excel</h3>
               </div>
               <!-- /.card-header -->
-              <div class="card-body p-2 m-3">
+              <div class="card-body p-2 m-3" >
+                @if(count($Machines) > 0)
+                  <div class="form-group col-xs-3 mt-1">
+                    <select class="custom-select" id="machineselection" name="machineselection">
+                      <option value="" >Select Machine</option>
+                      @foreach($Machines as $k => $Machine)
+                        <option value="{{$Machine->id}}" {{($selectedmachine == $Machine->machine_name) ? "selected":"" }} >{{$Machine->machine_name}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                @else
+                  <div class="form-group col-xs-3 mt-1">Request your admin to add Machine! You will need to select machine before import.</div>
+                @endif
+              </div>
+
+              <div class="card-body p-2 ml-3 mt-0 mb-3" id="excelImportForm">
+                
                 <!--begin::Form-->
-                <form id="uploadForm" action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
+                <form id="uploadExcelForm" action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
                      {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="exampleFormControlFile1">Example file input</label>
+                        <label for="exampleFormControlFile1">Upload your Excel file</label>
                         <input type="file" class="form-control-file" id="file" name="file">
                     </div>
                     <div class="row ml-1">
@@ -54,6 +70,26 @@
                     </div>
                 </form>
 
+              </div>
+
+              <div class="card-body p-2 ml-3 mt-0 mb-3" id="csvImportForm">
+                <h3>Make sure to select all the images mentioned in csv file</h3>
+                <form id="uploadCSVForm" action="{{ route('uploadcsv') }}" method="post" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Upload your CSV file</label>
+                        <input type="file" class="form-control-file" id="csvfile" name="file">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlFile2">Upload your SnapPic folder</label>
+                        <input type="file" class="form-control-file" id="snapfile" name="snapfile[]" multiple>
+                    </div>
+
+                    <div class="row ml-1">
+                        <input type="submit" value="Submit" class="btn btn-success float-right">
+                    </div>
+                </form>
               </div>
               
               <!-- /.card-body -->
@@ -96,25 +132,70 @@
 
   </div>
 @endsection
+
 @push('after-script')
-  <!-- <script type="text/javascript">
-    $(document).ready(function (e){
-    $("#uploadForm").on('submit',(function(e){
-    e.preventDefault();
-    $.ajax({
-    url: "uploadExcel.php",
-    type: "POST",
-    data:  new FormData(this),
-    contentType: false,
-    cache: false,
-    processData:false,
-    success: function(data){
-    $("#targetLayer").html(data);
-    },
-    error: function(){} 	        
+<script>
+  $('#excelImportForm').hide();
+  $('#csvImportForm').hide();
+
+
+    $('#uploadCSVForm').submit(function (e) {
+      e.preventDefault;
+      if( document.getElementById("csvfile").files.length == 0 ){
+            alert("No csv selected");
+            return false;
+      }
+      if( document.getElementById("snapfile").files.length == 0 ){
+            alert("No snapfile selected");
+            return false;
+      }
     });
-    }));
+
+    $('#uploadExcelForm').submit(function (e) {
+      e.preventDefault;
+      if( document.getElementById("file").files.length == 0 ){
+            alert("No excel selected");
+            return false;
+      }
     });
-  </script> -->
+
+
+    var machineselected = $( "#machineselection option:selected" ).text();
+    if(machineselected == 'XF-TM-200') {
+        $('#csvImportForm').show();
+        $('#excelImportForm').hide();
+    } 
+    if(machineselected == 'OET-213H-NB_192.168.1.100') {
+        $('#csvImportForm').show();
+        $('#excelImportForm').hide();
+    } 
+    if(machineselected == 'XF-TM-100') {
+      $('#excelImportForm').show();
+      $('#csvImportForm').hide();
+    }
+
+    $("#machineselection").on("change", function(){
+      var machineselected = $( "#machineselection option:selected" ).text();
+      //console.log(machineselected);
+      if(machineselected == 'Select Machine') {
+        $('#csvImportForm').hide();
+        $('#excelImportForm').hide();
+      } 
+      if(machineselected == 'XF-TM-200') {
+        $('#csvImportForm').show();
+        $('#excelImportForm').hide();
+      } 
+      if(machineselected == 'OET-213H-NB_192.168.1.100') {
+        $('#csvImportForm').show();
+        $('#excelImportForm').hide();
+      } 
+      if(machineselected == 'XF-TM-100') {
+        $('#excelImportForm').show();
+        $('#csvImportForm').hide();
+      }
+      
+    });
+
+</script>
 @endpush
 

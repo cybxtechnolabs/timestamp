@@ -267,8 +267,8 @@ class ReportController extends Controller
         ]);
         
         
-        
-
+        //for image 
+        $base_url = request()->root();
 
         //get current user id
         $user_id = Auth::user()->id;
@@ -309,7 +309,7 @@ class ReportController extends Controller
         }
 
         if ($Setting->skip_mask > 0) {
-            $reports->where('pass_status', '!=', 'No mask');
+            $reports->where('pass_status', '!=', 'No Mask');
         }
         if ($Setting->skip_unknown > 0) {
             $reports->where('name', '!=', 'Stranger');
@@ -443,7 +443,7 @@ class ReportController extends Controller
 
                     $tempin = ($getTempIn) ? $getTempIn->body_temperature : '-';
                     $tempout = ($getTempOut) ? $getTempOut->body_temperature : '-';
-                    $image = ($image) ? $image->snap_photo : '-';
+                    $image = ($image) ? $base_url.'/'.$image->snap_photo : '-';
                     $reportData[$d][$u][] = [
                             'image' => $image,
                             'in'=>$checkinCurrent, 'out'=>$checkOutCurrent, 

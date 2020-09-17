@@ -44,29 +44,23 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
     Route::get('users/approve/{user_id?}', ['middleware' => 'adminAccess', 'as' => 'admin.usersapprove', 'uses' => 'UserController@approve']);
     //Route::get('setting/update/{id?}', ['middleware' => 'adminAccess', 'as' => 'admin.settingupdate', 'uses' => 'SettingController@update']);
    // Route::post('settings/update/{id}', ['middleware' => 'adminAccess', 'as' => 'admin.settings', 'uses' => 'SettingController@index'] 'GalleryController@update')->name('gallery.update');
+    Route::resource('machine','MachineController');
 });
-
-//Route::get('/setting/index', 'SettingController@index')->name('setting.index');
-//Route::get('/settings/create', 'SettingController@create')->name('setting.create');
-//Route::post('/settings/store', 'SettingController@store')->name('setting.store');
-//Route::get('/setting/edit', 'SettingController@edit')->name('setting.edit');
 
 Route::get('/setting', 'Admin\SettingController@edit')->name('setting');
 Route::get('/setting/create', 'Admin\SettingController@create')->name('setting.create');
 Route::post('/setting/update/{id}', 'Admin\SettingController@update')->name('settingupdate');
 
-//Route::get('/settings/delete/{id}', 'SettingController@destroy')->name('setting.destroy');
-//Route::get('/settings/show', 'GalleryController@show')->name('gallery.show');
-//Route::post('/settings/update', 'SettingController@update')->name('setting.update');
-
 Route::get('/import', 'ImportController@index')->name('import');
 Route::post('/import', 'ImportController@uploadexcel')->name('upload');
+Route::post('/importcsv', 'ImportController@uploadcsv')->name('uploadcsv');
 
 Route::get('/report', 'ReportController@index')->name('report.index');
 Route::post('/report/generate', 'ReportController@generateReport')->name('report.generate');
 Route::get('/report/generatepdf/{start_date}/{end_date}', 'ReportController@generateReportpdf')->name('report.generatepdf');
 
 
+//Route::get('/machine', 'MachineController@index')->name('machine');
 
 //Route::get('verify/{code}', ['as' => 'email.verify', 'uses' => 'UserController@verifyEmail']);
 
