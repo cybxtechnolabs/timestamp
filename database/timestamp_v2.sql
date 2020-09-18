@@ -30,8 +30,8 @@ CREATE TABLE `import` (
   `id_card` varchar(200) DEFAULT NULL,
   `ic_card` varchar(200) DEFAULT NULL,
   `personner_id` varchar(200) DEFAULT NULL,
-  `updated_at` date NOT NULL,
-  `created_at` date NOT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -51,8 +51,8 @@ CREATE TABLE `import_duplicate` (
   `id_card` varchar(200) DEFAULT NULL,
   `ic_card` varchar(200) DEFAULT NULL,
   `personner_id` varchar(200) DEFAULT NULL,
-  `updated_at` date NOT NULL,
-  `created_at` date NOT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
