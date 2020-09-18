@@ -96,22 +96,10 @@ class ImportController extends Controller
                     //check if record already exist in our record 
                     //check if existing records for this importer only
                     $inorouttime = explode(' ',$value[0]);
-                    //issue in date format as year is of 2 digits
-                    //handling datetime format 
-                    $creation_date ='';
-                    $creation_dateExplode = explode('-',$inorouttime[0]);
 
-                    foreach ($creation_dateExplode as $k => $creation_dateString) {
-                        if($k ==2) {
-                            $creation_dateString = '20'.$creation_dateString;
-                        }
-                        $creation_date .= $creation_dateString.'-';
-                    }
-                    $creation_date = rtrim($creation_date, "-");
-                    $creation_date = date("Y-m-d", strtotime($creation_date));
-                    $creation_time = date("H:i:s", strtotime($inorouttime[1]));
+                    $creation_date = $inorouttime[0];
+                    $creation_time = $inorouttime[1];
  
-
                     $recordExist = Bulk::where('name','=',$value[1])
                             ->where('creation_date','=', $creation_date)
                             ->where('imported_by','=', $user->id)
@@ -180,10 +168,11 @@ class ImportController extends Controller
             $Machines = Machine::all();
 
             //TODO - get machine name from form
-
-            return view('import.import')->with('duplicateData', $duplicateData)->with('Machines', $Machines)
-                                        ->with('selectedmachine', 'XF-TM-200')
-                                        ->with('success', 'Uploaded file successfully. If there exists any duplicate entry it will be shown below');
+            return redirect()->route('import')
+                                ->with('success', 'Uploaded file successfully. If there exists any duplicate entry it will be shown below');
+            // return view('import.import')->with('duplicateData', $duplicateData)->with('Machines', $Machines)
+            //                             ->with('selectedmachine', 'XF-TM-200')
+            //                             ->with('success', 'Uploaded file successfully. If there exists any duplicate entry it will be shown below');
 
         } else {
             return back()->with('error', 'Select file');

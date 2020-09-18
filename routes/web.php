@@ -57,6 +57,7 @@ Route::post('/importcsv', 'ImportController@uploadcsv')->name('uploadcsv');
 
 Route::get('/report', 'ReportController@index')->name('report.index');
 Route::post('/report/generate', 'ReportController@generateReport')->name('report.generate');
+Route::get('/report/generate', 'ReportController@index');
 Route::get('/report/generatepdf/{start_date}/{end_date}', 'ReportController@generateReportpdf')->name('report.generatepdf');
 
 
