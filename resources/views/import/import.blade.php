@@ -12,7 +12,16 @@
                 <div class="alert alert-danger">
                     {{ session()->get('error') }}
                 </div>
+               
+                
             @endif
+            @if(session()->has('msg'))
+            <div class="alert alert-danger">
+            {{ session()->get('msg') }}
+                    <?php if(isset($msg)) print_r($msg); ?>
+                </div>
+            @endif
+
             
             @if(session()->has('success'))
                 <div class="alert alert-success">
@@ -83,7 +92,7 @@
 
                     <div class="form-group">
                         <label for="exampleFormControlFile2">Upload your SnapPic folder</label>
-                        <input type="file" class="form-control-file" id="snapfile" name="snapfile[]" multiple>
+                        <input type="file" class="form-control-file" id="snapfile" name="snapfile[]" multiple directory="" webkitdirectory="" mozdirectory="">
                     </div>
 
                     <div class="row ml-1">

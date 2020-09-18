@@ -55,20 +55,24 @@ class ImportController extends Controller
 
             //snappic management
             if($request->hasFile('snapfile')){
-                $error=array();
+                $errorfile='';
                 $extension=array("jpeg","jpg","png","gif");
                 foreach($_FILES["snapfile"]["tmp_name"] as $key=>$tmp_name) {
                     $file_name=$_FILES["snapfile"]["name"][$key];
                     $file_tmp=$_FILES["snapfile"]["tmp_name"][$key];
 
-                    $ext=pathinfo($file_name,PATHINFO_EXTENSION);
-                    if(in_array($ext,$extension)) {
-                        if(!file_exists("upload/snap/".$file_name)) {
-                            move_uploaded_file($file_tmp=$_FILES["snapfile"]["tmp_name"][$key],"upload/snap/".$file_name);
+                    if($file_name != 'Thumbs.db') {
+                        $ext=pathinfo($file_name,PATHINFO_EXTENSION);
+                        if(in_array($ext,$extension)) {
+                            if(!file_exists("upload/snap/".$file_name)) {
+                                move_uploaded_file($file_tmp=$_FILES["snapfile"]["tmp_name"][$key],"upload/snap/".$file_name);
+                            }
+                        } else {
+                            $errorfile.=$file_name;
+                            session()->flash('msg', $errorfile);
+                            session()->flash('error', 'Invalid image format selected. Please verify all selected images.');
+                            return back();
                         }
-                    } else {
-                       // array_push($error,"$file_name, ");
-                       return back()->with('error', 'Invalid image format selected. Please verify all selected images.');
                     }
                 }
             } else {
