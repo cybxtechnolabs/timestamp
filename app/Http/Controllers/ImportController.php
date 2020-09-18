@@ -31,13 +31,13 @@ class ImportController extends Controller
     public function index()
     {
         //delete any duplicate records if exist
-        BulkDuplicate::truncate();
-        $duplicateData = [];
+        //BulkDuplicate::truncate();
+       // $duplicateData = [];
 
         //get machines list
         $Machines = Machine::all();
 
-        return view('import.import')->with('duplicateData', $duplicateData)->with('Machines', $Machines)
+        return view('import.import')->with('Machines', $Machines)
                                     ->with('selectedmachine', '')
                                     ->with('success', '');
     }
@@ -100,16 +100,16 @@ class ImportController extends Controller
                     $creation_date = $inorouttime[0];
                     $creation_time = $inorouttime[1];
  
-                    $recordExist = Bulk::where('name','=',$value[1])
+                    $recordExist = Bulk::whereIn('name',[$value[1], 'Stranger'])
                             ->where('creation_date','=', $creation_date)
                             ->where('imported_by','=', $user->id)
                             ->where('creation_time','=', $creation_time)
                             ->get();
-
+                            
                     //saving images name
                     $imagename = explode('/',$value[8]); 
                     $imagename = (string)end($imagename);
-                    //print_r(end($imagename) );
+
                     
                     if(count($recordExist) == 0){
 
@@ -163,16 +163,18 @@ class ImportController extends Controller
                 }
                 
             }
-            //dd();
+
             $duplicateData = BulkDuplicate::all();
+  
             $Machines = Machine::all();
 
             //TODO - get machine name from form
-            return redirect()->route('import')
-                                ->with('success', 'Uploaded file successfully. If there exists any duplicate entry it will be shown below');
-            // return view('import.import')->with('duplicateData', $duplicateData)->with('Machines', $Machines)
-            //                             ->with('selectedmachine', 'XF-TM-200')
-            //                             ->with('success', 'Uploaded file successfully. If there exists any duplicate entry it will be shown below');
+            // return redirect()->route('import')->with('duplicateData', $duplicateData)->with('Machines', $Machines)
+            //                     ->with('selectedmachine', 'XF-TM-200')
+            //                     ->with('success', 'Uploaded file successfully. If there exists any duplicate entry it will be shown below');
+             return view('import.import')->with('duplicateData', $duplicateData)->with('Machines', $Machines)
+                                         ->with('selectedmachine', 'XF-TM-200')
+                                         ->with('success', 'Uploaded file successfully. If there exists any duplicate entry it will be shown below');
 
         } else {
             return back()->with('error', 'Select file');

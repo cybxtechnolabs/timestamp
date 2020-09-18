@@ -54,6 +54,7 @@ Route::post('/setting/update/{id}', 'Admin\SettingController@update')->name('set
 Route::get('/import', 'ImportController@index')->name('import');
 Route::post('/import', 'ImportController@uploadexcel')->name('upload');
 Route::post('/importcsv', 'ImportController@uploadcsv')->name('uploadcsv');
+Route::get('/importcsv', 'ImportController@index');
 
 Route::get('/report', 'ReportController@index')->name('report.index');
 Route::post('/report/generate', 'ReportController@generateReport')->name('report.generate');

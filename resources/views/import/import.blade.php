@@ -97,7 +97,8 @@
           </div>
         </div>
       </div>
-      @if(count($duplicateData) > 0 )
+
+      @if(isset($duplicateData) && count($duplicateData) > 0 )
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
