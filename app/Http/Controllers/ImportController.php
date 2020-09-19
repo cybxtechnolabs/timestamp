@@ -57,6 +57,11 @@ class ImportController extends Controller
             if($request->hasFile('snapfile')){
                 $errorfile='';
                 $extension=array("jpeg","jpg","png","gif");
+
+                if (!file_exists('upload/snap/')) {
+                    mkdir('upload/snap/', 0777, true);
+                }
+                
                 foreach($_FILES["snapfile"]["tmp_name"] as $key=>$tmp_name) {
                     $file_name=$_FILES["snapfile"]["name"][$key];
                     $file_tmp=$_FILES["snapfile"]["tmp_name"][$key];
@@ -240,6 +245,11 @@ class ImportController extends Controller
                 // Extract base64 file for standard data
                 $fileBin = file_get_contents($data);
                 $mimeType = mime_content_type($data);
+
+                if (!file_exists('upload/snap/')) {
+                    mkdir('upload/snap/', 0777, true);
+                }
+
                 $file_name = 'upload/snap/'.time().'_'.$key.'_'.$value[1].'.jpeg';
                 // Check allowed mime type
                 //if ('image/png'==$mimeType) {
