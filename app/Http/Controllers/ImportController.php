@@ -61,6 +61,7 @@ class ImportController extends Controller
                 if (!file_exists('upload/snap/')) {
                     mkdir('upload/snap/', 0777, true);
                 }
+
                 
                 foreach($_FILES["snapfile"]["tmp_name"] as $key=>$tmp_name) {
                     $file_name=$_FILES["snapfile"]["name"][$key];
@@ -249,6 +250,7 @@ class ImportController extends Controller
                 if (!file_exists('upload/snap/')) {
                     mkdir('upload/snap/', 0777, true);
                 }
+                
 
                 $file_name = 'upload/snap/'.time().'_'.$key.'_'.$value[1].'.jpeg';
                 // Check allowed mime type
