@@ -62,7 +62,7 @@ class ImportController extends Controller
                     mkdir('upload/snap/', 0777, true);
                 }
 
-                
+                BulkDuplicate::truncate();
                 foreach($_FILES["snapfile"]["tmp_name"] as $key=>$tmp_name) {
                     $file_name=$_FILES["snapfile"]["name"][$key];
                     $file_tmp=$_FILES["snapfile"]["tmp_name"][$key];
@@ -219,7 +219,7 @@ class ImportController extends Controller
             $worksheet = $spreadsheet->getActiveSheet();
             $worksheetArray = $worksheet->toArray();
             array_shift($worksheetArray);
-
+BulkDuplicate::truncate();
             foreach ($worksheetArray as $key => $value) {
 
                 $worksheet = $spreadsheet->getActiveSheet();
