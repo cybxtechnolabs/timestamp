@@ -311,6 +311,7 @@ class ReportController extends Controller
         if ($Setting->skip_mask > 0) {
             $reports->where('pass_status', '!=', 'No Mask');
         }
+        
         if ($Setting->skip_unknown > 0) {
             $reports->whereNotIn('name', ['Stranger', 'Unknown']);
         }

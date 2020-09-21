@@ -47,10 +47,7 @@ class ImportController extends Controller
         $request->validate([
             'machineselection' => 'required',
         ]);
-        //dd($request->machineselection);
-        
 
-        
             //check which machine is selected
             if($request->machineselection == 'XF-TM-100' || $request->machineselection == 'XF-TM-105') {
                 $valid_extensions = array('xlsx', 'xls');
@@ -85,17 +82,14 @@ class ImportController extends Controller
                 $file->move($path, $name);
 
                 if($request->machineselection == 'XF-TM-100') {
-                    // $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load(public_path()."/upload/".$name);
-                    // $worksheet = $spreadsheet->getActiveSheet();
-                    // $sheetData = $worksheet->toArray();
-                    // array_shift($sheetData);
-
                     $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-                    
 
                 } elseif($request->machineselection == 'XF-TM-105') {
                     $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
                 } elseif ($request->machineselection == 'XF-TM-200') {
+                    //sheet management
+                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+                    
                     //snappic management
                     if($request->hasFile('snapfile')){
                         $errorfile='';
@@ -127,12 +121,6 @@ class ImportController extends Controller
                         } else {
                             return back()->with('error', 'Select all images in the SnapPic Folder.');
                         }
-                    
-                    //sheet management
-                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
-                   
-                   // $spreadsheet = $reader->load(public_path()."/upload/".$name);
-                   // $sheetData   = $spreadsheet->getActiveSheet()->toArray();
     
                 } else {
                     dd('new machine');
@@ -140,9 +128,9 @@ class ImportController extends Controller
                 $spreadsheet = $reader->load(public_path()."/upload/".$name);
                 $sheetData   = $spreadsheet->getActiveSheet()->toArray();
                 array_shift($sheetData);
+
                 //delete previous duplicate records
                 BulkDuplicate::truncate();
-
 
                 foreach ($sheetData as $key => $value) {
                     if( isset($value[1]) ) { //XF-TM-100 do not require key check in excel format but XF-TM-200 needs
@@ -313,9 +301,7 @@ class ImportController extends Controller
         
                             }
     
-                        }       
-    
-    
+                        }      
                         //dd($recordExist);
                     }
                     

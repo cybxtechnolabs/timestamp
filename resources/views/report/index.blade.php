@@ -112,8 +112,8 @@
                                   <th scope="col">Image</th>
                                   <th scope="col">Check In</th>
                                   <th scope="col">Check Out</th>
-                                  <th scope="col">Temp In (℉)</th>
-                                  <th scope="col">Temp Out (℉)</th>
+                                  <th scope="col">Temp In(℉)</th>
+                                  <th scope="col">Temp Out(℉)</th>
                                   <th scope="col">Duration</th>
                                   <!-- <th scope="col">Day Hrs</th> -->
                                 </tr>
