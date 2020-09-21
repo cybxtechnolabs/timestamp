@@ -125,7 +125,8 @@ CREATE TABLE `machines` (
 
 INSERT INTO `machines` (`id`, `machine_name`, `updated_at`, `created_at`) VALUES
 (1, 'XF-TM-100', '2020-09-17', '2020-09-17'),
-(2, 'XF-TM-200', '2020-09-17', '2020-09-17');
+(2, 'XF-TM-200', '2020-09-17', '2020-09-17'),
+(3, 'XF-TM-105', '2020-09-17', '2020-09-17');
 
 
 
