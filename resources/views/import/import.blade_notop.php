@@ -51,52 +51,51 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body p-2 m-3" >
-                
-              
+                @if(count($Machines) > 0)
+                  <div class="form-group col-xs-3 mt-1">
+                    <select class="custom-select" id="machineselection" name="machineselection">
+                      <option value="" >Select Machine</option>
+                      @foreach($Machines as $k => $Machine)
+                        <option value="{{$Machine->id}}" {{($selectedmachine == $Machine->machine_name) ? "selected":"" }} >{{$Machine->machine_name}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                @else
+                  <div class="form-group col-xs-3 mt-1">Request your admin to add Machine! You will need to select machine before import.</div>
+                @endif
+              </div>
 
-              
+              <div class="card-body p-2 ml-3 mt-0 mb-3" id="excelImportForm">
                 
                 <!--begin::Form-->
-                <form id="uploadForm" action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
+                <form id="uploadExcelForm" action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
                      {{ csrf_field() }}
-                     
-                    <!-- Machine selection -->
-                     <div class="card-body p-2 m-3 " >
-                        @if(count($Machines) > 0)
-                          <div class="form-group ">
-                            <select class="custom-select" id="machineselection" name="machineselection">
-                              <option value="" >Select Machine</option>
-                              @foreach($Machines as $k => $Machine)
-                                <option value="{{$Machine->machine_name}}" {{($selectedmachine == $Machine->machine_name) ? "selected":"" }} >{{$Machine->machine_name}}</option>
-                              @endforeach
-                            </select>
-                          </div>
-                        @else
-                          <div class="form-group ">Request your admin to add Machine! You will need to select machine before import.</div>
-                        @endif
-                      </div>
-
-                    <!-- Machine100 file selection excelImportForm-->
-                    <div class="form-group ml-3" id="excelImportForm">
+                    <div class="form-group">
                         <label for="exampleFormControlFile1">Upload your Excel file</label>
-                        <input type="file" class="form-control-file" id="file" name="fileexcel">
+                        <input type="file" class="form-control-file" id="file" name="file">
+                    </div>
+                    <div class="row ml-1">
+                        <input type="submit" value="Submit" class="btn btn-success float-right">
+                    </div>
+                </form>
+
+              </div>
+
+              <div class="card-body p-2 ml-3 mt-0 mb-3" id="csvImportForm">
+                <h3>Make sure to select all the images mentioned in csv file</h3>
+                <form id="uploadCSVForm" action="{{ route('uploadcsv') }}" method="post" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Upload your CSV file</label>
+                        <input type="file" class="form-control-file" id="csvfile" name="file">
                     </div>
 
-                    <!-- Machine200 file selection csvImportForm-->
-
-                    <div id="csvImportForm" class="ml-3">
-                      <div class="form-group">
-                          <label for="exampleFormControlFile1">Upload your CSV file</label>
-                          <input type="file" class="form-control-file" id="csvfile" name="filecsv">
-                      </div>
-
-                      <div class="form-group">
-                          <label for="exampleFormControlFile2">Upload your SnapPic folder</label>
-                          <input type="file" class="form-control-file" id="snapfile" name="snapfile[]" multiple directory="" webkitdirectory="" mozdirectory="">
-                      </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlFile2">Upload your SnapPic folder</label>
+                        <input type="file" class="form-control-file" id="snapfile" name="snapfile[]" multiple directory="" webkitdirectory="" mozdirectory="">
                     </div>
 
-                    <div class="row ml-3 submit" id="submit">
+                    <div class="row ml-1">
                         <input type="submit" value="Submit" class="btn btn-success float-right">
                     </div>
                 </form>
@@ -148,7 +147,6 @@
 <script>
   $('#excelImportForm').hide();
   $('#csvImportForm').hide();
-  $('#submit').hide();
 
 
     //when redirect happens handle hide show
@@ -209,6 +207,7 @@
       }
       
     });
+
 
 </script>
 @endpush

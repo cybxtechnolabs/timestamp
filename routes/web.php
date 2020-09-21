@@ -52,9 +52,12 @@ Route::get('/setting/create', 'Admin\SettingController@create')->name('setting.c
 Route::post('/setting/update/{id}', 'Admin\SettingController@update')->name('settingupdate');
 
 Route::get('/import', 'ImportController@index')->name('import');
-Route::post('/import', 'ImportController@uploadexcel')->name('upload');
-Route::post('/importcsv', 'ImportController@uploadcsv')->name('uploadcsv');
-Route::get('/importcsv', 'ImportController@index');
+// Route::post('/import', 'ImportController@uploadexcel')->name('upload');
+// Route::post('/importcsv', 'ImportController@uploadcsv')->name('uploadcsv');
+// Route::get('/importcsv', 'ImportController@index');
+
+
+Route::post('/import', 'ImportController@uploadanymachine')->name('upload');
 
 Route::get('/report', 'ReportController@index')->name('report.index');
 Route::post('/report/generate', 'ReportController@generateReport')->name('report.generate');
